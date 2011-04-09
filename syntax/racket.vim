@@ -213,6 +213,7 @@ syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter
 syntax region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
 
 syn match racketOther oneline    "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+syn match racketExtSyntax oneline    "#lang "
 syn match racketExtSyntax oneline    "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
 " Synchronization and the wrapping up...
