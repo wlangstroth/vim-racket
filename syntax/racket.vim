@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
-" URL:          http://langstroth.com/vim
+" URL:          http://github.com/wlangstroth/vim-racket.git
 " Last Change:  2011-04-08
 
 " Initializing:
@@ -100,29 +100,28 @@ syn keyword racketFunc interaction-environment
 " ... so that a single + or -, inside a quoted context, would not be
 " interpreted as a number (outside such contexts, it's a racketFunc)
 
-syn match racketDelimiter oneline    !\.[ \t\[\]()";]!me=e-1
-syn match racketDelimiter oneline    !\.$!
+syn match racketDelimiter oneline !\.[ \t\[\]()";]!me=e-1
+syn match racketDelimiter oneline !\.$!
 " ... and a single dot is not a number but a delimiter
 
 " This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
 
-syn match racketOther oneline    ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
-syn match racketError oneline    ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketOther     oneline ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
+syn match racketError     oneline ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
-syn match racketOther oneline    "\.\.\."
-syn match racketError oneline    !\.\.\.[^ \t\[\]()";]\+!
+syn match racketOther     oneline "\.\.\."
+syn match racketError     oneline !\.\.\.[^ \t\[\]()";]\+!
 " ... a special identifier
 
-syn match racketConstant oneline    ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[ \t\[\]()";],me=e-1
-syn match racketConstant oneline    ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*$,
-syn match racketError oneline    ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketConstant  oneline ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[ \t\[\]()";],me=e-1
+syn match racketConstant  oneline ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*$,
+syn match racketError     oneline ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
-syn match racketConstant oneline    ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
-syn match racketConstant oneline    ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
-syn match racketError oneline    ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketConstant  oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
+syn match racketConstant  oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
+syn match racketError     oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
 " Non-quoted lists, and strings:
-
 syn region racketStruc matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALL
 syn region racketStruc matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=ALL
 
@@ -135,38 +134,40 @@ syn region racketString start=+\%(\\\)\@<!"+ skip=+\\[\\"]+ end=+"+
 " Comments:
 syn match racketComment ";.*$"
 
-syn match racketOther   oneline    ![+-][ \t\[\]()";]!me=e-1
-syn match racketOther   oneline    ![+-]$!
+syn match racketOther   oneline  ![+-][ \t\[\]()";]!me=e-1
+syn match racketOther   oneline  ![+-]$!
 
 syn match racketNumber  oneline  "[-#+0-9.][-#+/0-9a-f@i.boxesfdl]*"
-syn match racketError   oneline    ![-#+0-9.][-#+/0-9a-f@i.boxesfdl]*[^-#+/0-9a-f@i.boxesfdl \t\[\]()";][^ \t\[\]()";]*!
+syn match racketError   oneline  ![-#+0-9.][-#+/0-9a-f@i.boxesfdl]*[^-#+/0-9a-f@i.boxesfdl \t\[\]()";][^ \t\[\]()";]*!
 
 syn match racketBoolean oneline  "#[tf]"
 syn match racketError   oneline  !#[tf][^ \t\[\]()";]\+!
 
-syn match racketChar    oneline    "#\\"
-syn match racketChar    oneline    "#\\."
-syn match racketError   oneline    !#\\.[^ \t\[\]()";]\+!
-syn match racketChar    oneline    "#\\space"
-syn match racketError   oneline    !#\\space[^ \t\[\]()";]\+!
-syn match racketChar    oneline    "#\\newline"
-syn match racketError   oneline    !#\\newline[^ \t\[\]()";]\+!
+syn match racketChar    oneline  "#\\"
+syn match racketChar    oneline  "#\\."
+syn match racketError   oneline  !#\\.[^ \t\[\]()";]\+!
+syn match racketChar    oneline  "#\\space"
+syn match racketError   oneline  !#\\space[^ \t\[\]()";]\+!
+syn match racketChar    oneline  "#\\newline"
+syn match racketError   oneline  !#\\newline[^ \t\[\]()";]\+!
 
 " MzScheme extensions
 " multiline comment
 syn region racketComment start="#|" end="|#"
 
 " #%xxx are the special MzScheme identifiers
-syn match racketOther oneline    "#%[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
-" anything limited by |'s is identifier
-syn match racketOther oneline    "|[^|]\+|"
+syn match racketOther   oneline "#%[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
-syn match racketChar oneline    "#\\\%(return\|tab\)"
+" anything limited by |'s is identifier
+syn match racketOther   oneline "|[^|]\+|"
+syn match racketChar    oneline "#\\\%(return\|tab\)"
 
 " Modules require stmt
 syn keyword racketExtSyntax module require dynamic-require lib prefix all-except prefix-all-except rename
+
 " modules provide stmt
 syn keyword racketExtSyntax provide struct all-from all-from-except all-defined all-defined-except
+
 " Other from MzScheme
 syn keyword racketExtSyntax with-handlers when unless instantiate define-struct case-lambda syntax-case
 syn keyword racketExtSyntax free-identifier=? bound-identifier=? module-identifier=? syntax-object->datum
@@ -186,6 +187,7 @@ syn keyword racketExtFunc system compile-file system-library-subpath getenv pute
 syn keyword racketExtFunc remove* file-size find-files fold-files directory-list shell-execute split-path
 syn keyword racketExtFunc current-error-port process/ports process printf fprintf open-input-string open-output-string
 syn keyword racketExtFunc get-output-string
+
 " exceptions
 syn keyword racketExtFunc exn exn:application:arity exn:application:continuation exn:application:fprintf:mismatch
 syn keyword racketExtFunc exn:application:mismatch exn:application:type exn:application:mismatch exn:break exn:i/o:filesystem exn:i/o:port
@@ -195,6 +197,7 @@ syn keyword racketExtFunc exn? exn:application:arity? exn:application:continuati
 syn keyword racketExtFunc exn:application:type? exn:application:mismatch? exn:break? exn:i/o:filesystem? exn:i/o:port? exn:i/o:port:closed?
 syn keyword racketExtFunc exn:i/o:tcp? exn:i/o:udp? exn:misc? exn:misc:application? exn:misc:unsupported? exn:module? exn:read? exn:read:non-char?
 syn keyword racketExtFunc exn:special-comment? exn:syntax? exn:thread? exn:user? exn:variable? exn:application:mismatch?
+
 " Command-line parsing
 syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each 
 
@@ -208,13 +211,13 @@ syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=AL
 syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=ALL
 syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=ALL
 
-
 " multiline comment
 syntax region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
 
-syn match racketOther oneline    "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
-syn match racketExtSyntax oneline    "#lang "
-syn match racketExtSyntax oneline    "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+syn match racketOther     oneline "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+
+syn match racketExtSyntax oneline "#lang "
+syn match racketExtSyntax oneline "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
 " Synchronization and the wrapping up...
 syn sync match matchPlace grouphere NONE "^[^ \t]"
@@ -231,23 +234,23 @@ if version >= 508 || !exists("did_racket_syntax_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
-  HiLink racketSyntax  Statement
-  HiLink racketFunc  Function
+  HiLink racketSyntax             Statement
+  HiLink racketFunc               Function
 
-  HiLink racketString  String
-  HiLink racketChar  Character
-  HiLink racketNumber  Number
-  HiLink racketBoolean  Boolean
+  HiLink racketString             String
+  HiLink racketChar               Character
+  HiLink racketNumber             Number
+  HiLink racketBoolean            Boolean
 
-  HiLink racketDelimiter Delimiter
-  HiLink racketConstant  Constant
+  HiLink racketDelimiter          Delimiter
+  HiLink racketConstant           Constant
 
-  HiLink racketComment  Comment
-  HiLink racketMultilineComment Comment
-  HiLink racketError  Error
+  HiLink racketComment            Comment
+  HiLink racketMultilineComment   Comment
+  HiLink racketError              Error
 
-  HiLink racketExtSyntax Type
-  HiLink racketExtFunc  PreProc
+  HiLink racketExtSyntax          Type
+  HiLink racketExtFunc            PreProc
   delcommand HiLink
 endif
 
