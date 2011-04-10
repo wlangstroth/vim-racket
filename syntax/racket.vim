@@ -96,6 +96,7 @@ syn keyword racketFunc char-ready? load transcript-on transcript-off eval
 syn keyword racketFunc dynamic-wind port? values call-with-values
 syn keyword racketFunc racket-report-environment null-environment
 syn keyword racketFunc interaction-environment
+syn keyword racketFunc regexp-replace
 
 " ... so that a single + or -, inside a quoted context, would not be
 " interpreted as a number (outside such contexts, it's a racketFunc)
