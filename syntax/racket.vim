@@ -198,6 +198,12 @@ syn keyword racketFunc char-iso-control? char-general-category
 syn keyword racketFunc make-known-char-range-list
 syn keyword racketFunc char-upcase char-downcase char-titlecase char-foldcase
 
+" 3.6 Symbols
+syn keyword racketFunc symbol? symbol-interned? symbol-unreadable?
+syn keyword racketFunc symbol->string string->symbol
+syn keyword racketFunc string->uninterned-symbol string->unreadable-symbol
+syn keyword racketFunc gensym
+
 
 syn keyword racketFunc regexp pregexp regexp-replace
 
