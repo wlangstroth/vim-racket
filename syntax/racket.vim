@@ -161,6 +161,18 @@ syn keyword racketFunc fxvector-ref fxvector-set! fxvector-copy in-fxvector
 syn keyword racketFunc for/fxvector for*/fxvector
 syn keyword racketFunc shared-fxvector make-shared-fxvector
 
+" 3.3 Strings
+syn keyword racketFunc string? make-string string string->immutable-string string-length
+syn keyword racketFunc string-ref string-set! substring string-copy string-copy!
+syn keyword racketFunc string-fill! string-append string->list list->string
+syn keyword racketFunc build-string string=? string<? string<=? string>? string>=?
+syn keyword racketFunc string-ci=? string-ci<? string-ci<=? string-ci>? string-ci>=?
+syn keyword racketFunc string-upcase string-downcase string-titlecase string-foldcase
+syn keyword racketFunc string-normalize-nfd string-normalize-nfc string-normalize-nfkc 
+syn keyword racketFunc string-locale=? string-locale>? string-locale<?
+syn keyword racketFunc string-locale-ci=? string-locale<=?
+syn keyword racketFunc string-locale-upcase string-locale-downcase
+syn keyword racketFunc string-append* string-join
 
 
 syn keyword racketFunc regexp pregexp regexp-replace
