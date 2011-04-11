@@ -185,6 +185,18 @@ syn keyword racketFunc string->bytes/locale string->bytes/latin-1
 syn keyword racketFunc string-utf-8-length bytes-utf8-ref bytes-utf-8-index
 syn keyword racketFunc bytes-open-converter bytes-close-converter
 syn keyword racketFunc bytes-convert bytes-convert-end bytes-converter?
+syn keyword racketFunc locale-string-encoding
+
+" 3.5 Characters
+syn keyword racketFunc char? char->integer integer->char
+syn keyword racketFunc char=? char<? char<=? char>? char>=?
+syn keyword racketFunc char-ci=? char-ci<? char-ci<=? char-ci>? char-ci>=?
+syn keyword racketFunc char-alphabetic? char-lowercase? char-uppercase? char-title-case?
+syn keyword racketFunc char-numeric? char-symbolic? char-punctuation? char-graphic?
+syn keyword racketFunc char-whitespace? char-blank?
+syn keyword racketFunc char-iso-control? char-general-category
+syn keyword racketFunc make-known-char-range-list
+syn keyword racketFunc char-upcase char-downcase char-titlecase char-foldcase
 
 
 syn keyword racketFunc regexp pregexp regexp-replace
