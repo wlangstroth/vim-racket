@@ -150,11 +150,22 @@ syn keyword racketFunc flvector-ref flvector-set! flvector-copy in-flvector
 syn keyword racketFunc for/flvector for*/flvector
 syn keyword racketFunc shared-flvector make-shared-flvector
 
+" 3.2.4 Fixnums
+syn keyword racketFunc fx+ fx- fx* fxquotient fxremainder fxmodulo fxabs
+syn keyword racketFunc fxand fxior fxxor fxnot fxlshift fxrshift
+syn keyword racketFunc fx= fx< fx> fx<= fx>= fxmin fxmax fx->fl fl->fx
+
+" 3.2.4.2 Fixnum Vectors
+syn keyword racketFunc fxvector? fxvector make-fxvector fxvector-length
+syn keyword racketFunc fxvector-ref fxvector-set! fxvector-copy in-fxvector
+syn keyword racketFunc for/fxvector for*/fxvector
+syn keyword racketFunc shared-fxvector make-shared-fxvector
+
+
 
 syn keyword racketFunc regexp pregexp regexp-replace
 
 syn keyword racketFunc substring string-length
-
 
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
 syn keyword racketFunc hasheq hasheqv
