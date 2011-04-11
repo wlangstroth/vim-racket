@@ -217,6 +217,9 @@ syn keyword racketFunc regexp-match-peek-positions-immediat/end
 syn keyword racketFunc regexp-split regexp-replace regexp-replace*
 syn keyword racketFunc regexp-replace-quote
 
+" 3.8 Keywords
+syn keyword racketFunc keyword? keyword->string string->keyword keyword<?
+
 
 
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
