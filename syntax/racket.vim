@@ -2,10 +2,10 @@
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket.git
-" Last Change:  2011-04-08
+" Last Change:  2011-04-10
+" Description:  Contains all of the keywords in #lang racket
 
 " Initializing:
-
 if version < 600
   syntax clear
 elseif exists("b:current_syntax")
@@ -54,7 +54,7 @@ else
 endif
 
 " Forms in order of appearance at
-" http://docs.racket-lang.org/reference/index.html (2011-04-10)
+" http://docs.racket-lang.org/reference/index.html
 "
 syn keyword racketSyntax module require provide quote
 syn keyword racketSyntax #%datum #%expression #%top #%variable-reference #%app
@@ -133,8 +133,29 @@ syn keyword racketFunc system-big-endian?
 " 3.2.2.9 Extra Constants and Functions
 syn keyword racketFunc pi sqr sgn conjugate sinh cosh tanh order-of-magnitude
 
+" 3.2.3 Flonums
+
+" 3.2.3.1 Flonum Arithmetic
+syn keyword racketFunc fl+ fl- fl* fl/ flabs
+syn keyword racketFunc fl= fl< fl> fl<= fl>= flmin flmax
+syn keyword racketFunc flround flfloor flceiling fltruncate
+syn keyword racketFunc flsin flcos fltan flasin flacos flatan
+syn keyword racketFunc fllog flexp flsqrt
+syn keyword racketFunc ->fl fl->exact-integer make-flrectangular
+syn keyword racketFunc flreal-part flimag-part
+
+" 3.2.3.2 Flonum Vectors
+syn keyword racketFunc flvector? flvector make-flvector flvector-length
+syn keyword racketFunc flvector-ref flvector-set! flvector-copy in-flvector
+syn keyword racketFunc for/flvector for*/flvector
+syn keyword racketFunc shared-flvector make-shared-flvector
+
 
 syn keyword racketFunc regexp pregexp regexp-replace
+
+syn keyword racketFunc substring string-length
+
+
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
 syn keyword racketFunc hasheq hasheqv
 syn keyword racketFunc make-hash make-hasheqv make-hasheq make-weak-hash make-weak-hasheqv
