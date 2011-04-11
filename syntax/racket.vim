@@ -204,10 +204,20 @@ syn keyword racketFunc symbol->string string->symbol
 syn keyword racketFunc string->uninterned-symbol string->unreadable-symbol
 syn keyword racketFunc gensym
 
+" 3.7 Regular Expressions
+syn keyword racketFunc regexp? pregexp? byte-regexp? byte-pregexp?
+syn keyword racketFunc regexp pregexp byte-regexp byte-pregexp
+syn keyword racketFunc regexp-quote regexp-match regexp-match*
+syn keyword racketFunc regexp-try-match regexp-match-positions
+syn keyword racketFunc regexp-match-positions* regexp-match?
+syn keyword racketFunc regexp-match-peek-positions regexp-match-peek-immediate
+syn keyword racketFunc regexp-match-peek regexp-match-peek-positions*
+syn keyword racketFunc regexp-match/end regexp-match-positions/end
+syn keyword racketFunc regexp-match-peek-positions-immediat/end
+syn keyword racketFunc regexp-split regexp-replace regexp-replace*
+syn keyword racketFunc regexp-replace-quote
 
-syn keyword racketFunc regexp pregexp regexp-replace
 
-syn keyword racketFunc substring string-length
 
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
 syn keyword racketFunc hasheq hasheqv
