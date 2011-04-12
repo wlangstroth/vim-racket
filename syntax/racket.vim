@@ -2,7 +2,7 @@
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket.git
-" Last Change:  2011-04-10
+" Last Change:  2011-04-12
 " Description:  Contains all of the keywords in #lang racket
 
 " Initializing:
@@ -15,8 +15,8 @@ endif
 syn case ignore
 
 " Everything that doesn't fit the rules is an error...
-syn match racketError oneline    ![^ \t()\[\]";]*!
-syn match racketError oneline    ")"
+syn match racketError oneline ![^ \t()\[\]";]*!
+syn match racketError oneline ")"
 
 if version < 600
   set iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
@@ -56,6 +56,7 @@ syn keyword racketSyntax package? package-exported-identifiers package-original-
 syn keyword racketSyntax block #%stratified-body
 
 " Functions
+
 syn keyword racketFunc boolean? not equal? eqv? eq? equal?/recur immutable?
 syn keyword racketFunc true false symbol=? boolean=? false?
 syn keyword racketFunc number? complex? real? rational? integer?
@@ -219,10 +220,8 @@ syn match racketDelimiter oneline !\.$!
 " ... and a single dot is not a number but a delimiter
 
 " Quoted and backquoted stuff
-" syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-" syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-syn region racketQuotedList matchgroup=Delimiter start="'(" end=")" contains=ALL
+syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
 
 syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
 
@@ -287,6 +286,7 @@ syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
 
 " Comments
 syn match racketComment /;.*$/
+syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
 
 syn match racketOther   oneline  ![+-][ \t\[\]()";]!me=e-1
 syn match racketOther   oneline  ![+-]$!
@@ -309,8 +309,6 @@ syn match racketError   oneline  !#\\newline[^ \t\[\]()";]\+!
 " Command-line parsing
 syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each
 
-" multiline comment
-syntax region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
 
 syn match racketOther     oneline "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
@@ -340,7 +338,7 @@ if version >= 508 || !exists("did_racket_syntax_inits")
   HiLink racketNumber             Number
   HiLink racketBoolean            Boolean
 
-  HiLink racketQuotedList         Special
+  HiLink racketQuoted             Special
 
   HiLink racketDelimiter          Delimiter
   HiLink racketConstant           Constant
