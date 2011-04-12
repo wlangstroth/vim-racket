@@ -220,6 +220,11 @@ syn keyword racketFunc regexp-replace-quote
 " 3.8 Keywords
 syn keyword racketFunc keyword? keyword->string string->keyword keyword<?
 
+" 3.9 Pairs and Lists
+syn keyword racketFunc pair? null? cons car cdr null
+syn keyword racketFunc list? list list* build-list length
+syn keyword racketFunc list-ref list-tail append reverse 
+
 
 
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
@@ -259,17 +264,19 @@ syn match racketConstant  oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me
 syn match racketConstant  oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
 syn match racketError     oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
-" Non-quoted lists, and strings:
+" Non-quoted lists, and strings
 syn region racketStruc matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALL
 syn region racketStruc matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=ALL
 
 syn region racketStruc matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=ALL
 syn region racketStruc matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=ALL
 
-" Simple literals:
+syn region racketList matchgroup=Delimiter start="'(" matchgroup=Delimiter end=")" contains=ALL
+
+" Simple literals
 syn region racketString start=+\%(\\\)\@<!"+ skip=+\\[\\"]+ end=+"+
 
-" Comments:
+" Comments
 syn match racketComment ";.*$"
 
 syn match racketOther   oneline  ![+-][ \t\[\]()";]!me=e-1
@@ -318,7 +325,7 @@ syntax region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilin
 
 syn match racketOther     oneline "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
-syn match racketExtSyntax oneline "#lang "
+syn match racketSyntax    oneline "#lang "
 syn match racketExtSyntax oneline "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
 " Synchronization and the wrapping up...
