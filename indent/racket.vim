@@ -1,8 +1,7 @@
-" Vim indent file
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
-" URL:          http://langstroth.com/vim
-" Last Change:  2011-04-08
+" URL:          http://github.com/wlangstroth/vim-racket
+" Last Change:  2011-04-12
 
 if exists("b:did_indent")
    finish
