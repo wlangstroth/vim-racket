@@ -18,35 +18,6 @@ syn case ignore
 syn match racketError oneline    ![^ \t()\[\]";]*!
 syn match racketError oneline    ")"
 
-" Quoted and backquoted stuff
-syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-syn region racketStrucRestricted matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketStrucRestricted matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-" Popular Scheme extension:
-" using [] as well as ()
-syn region racketStrucRestricted matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketStrucRestricted matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-syn region racketUnquote matchgroup=Delimiter start="," end=![ \t\[\]()";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@" end=![ \t\[\]()";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-syn region racketUnquote matchgroup=Delimiter start=",(" end=")" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start=",@(" end=")" contains=ALL
-
-syn region racketUnquote matchgroup=Delimiter start=",#(" end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@#(" end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
-syn region racketUnquote matchgroup=Delimiter start=",\[" end="\]" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start=",@\[" end="\]" contains=ALL
-
-syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-
 if version < 600
   set iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
 else
@@ -247,8 +218,48 @@ syn match racketDelimiter oneline !\.[ \t\[\]()";]!me=e-1
 syn match racketDelimiter oneline !\.$!
 " ... and a single dot is not a number but a delimiter
 
-" This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
+" Quoted and backquoted stuff
+" syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+" syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
 
+syn region racketQuotedList matchgroup=Delimiter start="'(" end=")" contains=ALL
+
+syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+
+syn region racketStrucRestricted matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketStrucRestricted matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+
+" Popular Scheme extension:
+" using [] as well as ()
+syn region racketStrucRestricted matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketStrucRestricted matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+
+syn region racketUnquote matchgroup=Delimiter start="," end=![ \t\[\]()";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",@" end=![ \t\[\]()";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+
+syn region racketUnquote matchgroup=Delimiter start=",(" end=")" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start=",@(" end=")" contains=ALL
+
+syn region racketUnquote matchgroup=Delimiter start=",#(" end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",@#(" end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+
+syn region racketUnquote matchgroup=Delimiter start=",\[" end="\]" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start=",@\[" end="\]" contains=ALL
+
+syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+
+" syntax quoting, unquoting and quasiquotation
+syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=ALL
+syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=ALL
+syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=ALL
+syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=ALL
+syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=ALL
+
+" This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
 syn match racketOther     oneline ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
 syn match racketError     oneline ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
@@ -271,13 +282,11 @@ syn region racketStruc matchgroup=Delimiter start="#(" matchgroup=Delimiter end=
 syn region racketStruc matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=ALL
 syn region racketStruc matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=ALL
 
-syn region racketList matchgroup=Delimiter start="'(" matchgroup=Delimiter end=")" contains=ALL
-
 " Simple literals
-syn region racketString start=+\%(\\\)\@<!"+ skip=+\\[\\"]+ end=+"+
+syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
 
 " Comments
-syn match racketComment ";.*$"
+syn match racketComment /;.*$/
 
 syn match racketOther   oneline  ![+-][ \t\[\]()";]!me=e-1
 syn match racketOther   oneline  ![+-]$!
@@ -296,29 +305,9 @@ syn match racketError   oneline  !#\\space[^ \t\[\]()";]\+!
 syn match racketChar    oneline  "#\\newline"
 syn match racketError   oneline  !#\\newline[^ \t\[\]()";]\+!
 
-" MzScheme extensions
-" multiline comment
-syn region racketComment start="#|" end="|#"
-
-" #%xxx are the special MzScheme identifiers
-syn match racketOther   oneline "#%[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
-
-" anything limited by |'s is identifier
-syn match racketOther   oneline "|[^|]\+|"
-syn match racketChar    oneline "#\\\%(return\|tab\)"
 
 " Command-line parsing
-syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each 
-
-" syntax quoting, unquoting and quasiquotation
-syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=ALL
-syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=ALL
-syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=ALL
+syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each
 
 " multiline comment
 syntax region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
@@ -350,6 +339,8 @@ if version >= 508 || !exists("did_racket_syntax_inits")
   HiLink racketChar               Character
   HiLink racketNumber             Number
   HiLink racketBoolean            Boolean
+
+  HiLink racketQuotedList         Special
 
   HiLink racketDelimiter          Delimiter
   HiLink racketConstant           Constant
