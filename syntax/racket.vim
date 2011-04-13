@@ -217,6 +217,7 @@ syn keyword racketFunc make-hash-placeholder make-hasheq-placeholder
 syn keyword racketFunc make-hasheqv-placeholder make-immutable-hasheqv
 
 " 3.10 Mutable Pairs and Lists
+syn keyword racketFunc mpair? mcons mcar mcdr
 
 
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
