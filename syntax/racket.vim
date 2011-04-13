@@ -195,8 +195,28 @@ syn keyword racketFunc keyword? keyword->string string->keyword keyword<?
 " 3.9 Pairs and Lists
 syn keyword racketFunc pair? null? cons car cdr null
 syn keyword racketFunc list? list list* build-list length
-syn keyword racketFunc list-ref list-tail append reverse 
+syn keyword racketFunc list-ref list-tail append reverse map andmap ormap
+syn keyword racketFunc for-each foldl foldr filter remove remq remv remove*
+syn keyword racketFunc remq* remv* sort member memv memq memf
+syn keyword racketFunc findf assoc assv assq assf
+syn keyword racketFunc caar cadr cdar cddr caaar caadr cadar caddr cdaar
+syn keyword racketFunc cddar cdddr caaaar caaadr caadar caaddr cadadr caddar
+syn keyword racketFunc cadddr cdaaar cdaadr cdadar cddaar cdddar cddddr
 
+" 3.9.7 Additional List Functions and Synonyms
+" (require racket/list)
+syn keyword racketFunc empty cons? empty? first rest
+syn keyword racketFunc second third fourth fifth sixth seventh eighth ninth tenth
+syn keyword racketFunc last last-pair make-list take drop split-at
+syn keyword racketFunc take-right drop-right split-at-right add-between
+syn keyword racketFunc append* flatten remove-duplicates filter-map
+syn keyword racketFunc count partition append-map filter-not shuffle
+syn keyword racketFunc argmin argmax make-reader-graph placeholder? make-placeholder
+syn keyword racketFunc placeholder-set! placeholder-get hash-placeholder?
+syn keyword racketFunc make-hash-placeholder make-hasheq-placeholder
+syn keyword racketFunc make-hasheqv-placeholder make-immutable-hasheqv
+
+" 3.10 Mutable Pairs and Lists
 
 
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
