@@ -15,8 +15,8 @@ endif
 syn case ignore
 
 " Everything that doesn't fit the rules is an error...
-syn match racketError oneline ![^ \t()\[\]";]*!
-syn match racketError oneline ")"
+syn match racketError ![^ \t()\[\]";]*!
+syn match racketError ")"
 
 if version < 600
   set iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
@@ -236,8 +236,8 @@ syn keyword racketFunc equal-hash-code equal-secondary-hash-code
 " ... so that a single + or -, inside a quoted context, would not be
 " interpreted as a number (outside such contexts, it's a racketFunc)
 
-syn match racketDelimiter oneline !\.[ \t\[\]()";]!me=e-1
-syn match racketDelimiter oneline !\.$!
+syn match racketDelimiter !\.[ \t\[\]()";]!me=e-1
+syn match racketDelimiter !\.$!
 " ... and a single dot is not a number but a delimiter
 
 " Quoted and backquoted stuff
@@ -280,20 +280,20 @@ syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me
 syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=ALL
 
 " This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
-syn match racketOther     oneline ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
-syn match racketError     oneline ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketOther     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
+syn match racketError     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
-syn match racketOther     oneline "\.\.\."
-syn match racketError     oneline !\.\.\.[^ \t\[\]()";]\+!
+syn match racketOther     "\.\.\."
+syn match racketError     !\.\.\.[^ \t\[\]()";]\+!
 " ... a special identifier
 
-syn match racketConstant  oneline ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[ \t\[\]()";],me=e-1
-syn match racketConstant  oneline ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*$,
-syn match racketError     oneline ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketConstant  ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[ \t\[\]()";],me=e-1
+syn match racketConstant  ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*$,
+syn match racketError     ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
-syn match racketConstant  oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
-syn match racketConstant  oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
-syn match racketError     oneline ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketConstant  ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
+syn match racketConstant  ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
+syn match racketError     ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
 " Non-quoted lists, and strings
 syn region racketStruc matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALL
@@ -309,32 +309,32 @@ syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
 syn match racketComment /;.*$/
 syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
 
-syn match racketOther   oneline  ![+-][ \t\[\]()";]!me=e-1
-syn match racketOther   oneline  ![+-]$!
+syn match racketOther   ![+-][ \t\[\]()";]!me=e-1
+syn match racketOther   ![+-]$!
 
-syn match racketNumber  oneline  "[-#+0-9.][-#+/0-9a-f@i.boxesfdl]*"
-syn match racketError   oneline  ![-#+0-9.][-#+/0-9a-f@i.boxesfdl]*[^-#+/0-9a-f@i.boxesfdl \t\[\]()";][^ \t\[\]()";]*!
+syn match racketNumber  "[-#+0-9.][-#+/0-9a-f@i.boxesfdl]*"
+syn match racketError   ![-#+0-9.][-#+/0-9a-f@i.boxesfdl]*[^-#+/0-9a-f@i.boxesfdl \t\[\]()";][^ \t\[\]()";]*!
 
-syn match racketBoolean oneline  "#[tf]"
-syn match racketError   oneline  !#[tf][^ \t\[\]()";]\+!
+syn match racketBoolean "#[tf]"
+syn match racketError   !#[tf][^ \t\[\]()";]\+!
 
-syn match racketChar    oneline  "#\\"
-syn match racketChar    oneline  "#\\."
-syn match racketError   oneline  !#\\.[^ \t\[\]()";]\+!
-syn match racketChar    oneline  "#\\space"
-syn match racketError   oneline  !#\\space[^ \t\[\]()";]\+!
-syn match racketChar    oneline  "#\\newline"
-syn match racketError   oneline  !#\\newline[^ \t\[\]()";]\+!
+syn match racketChar    "#\\"
+syn match racketChar    "#\\."
+syn match racketError   !#\\.[^ \t\[\]()";]\+!
+syn match racketChar    "#\\space"
+syn match racketError   !#\\space[^ \t\[\]()";]\+!
+syn match racketChar    "#\\newline"
+syn match racketError   !#\\newline[^ \t\[\]()";]\+!
 
 
 " Command-line parsing
 syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each
 
 
-syn match racketOther     oneline "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+syn match racketOther     "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
-syn match racketSyntax    oneline "#lang "
-syn match racketExtSyntax oneline "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+syn match racketSyntax    "#lang "
+syn match racketExtSyntax "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
 " Synchronization and the wrapping up...
 syn sync match matchPlace grouphere NONE "^[^ \t]"
