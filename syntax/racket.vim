@@ -289,10 +289,6 @@ syn region racketStruc matchgroup=Delimiter start="#\[" matchgroup=Delimiter end
 " Simple literals
 syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
 
-" Comments
-syn match racketComment /;.*$/
-syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
-
 syn match racketOther   ![+-][ \t\[\]()";]!me=e-1
 syn match racketOther   ![+-]$!
 
@@ -333,6 +329,10 @@ syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=TOP
 syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=TOP
 syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP
 syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=TOP
+
+" Comments
+syn match racketComment /;.*$/
+syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
 
 " Synchronization and the wrapping up...
 syn sync match matchPlace grouphere NONE "^[^ \t]"
