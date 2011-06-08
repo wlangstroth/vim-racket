@@ -241,43 +241,43 @@ syn match racketDelimiter !\.$!
 " ... and a single dot is not a number but a delimiter
 
 " Quoted and backquoted stuff
-syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
 
-syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
 
-syn region racketStrucRestricted matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketStrucRestricted matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketStrucRestricted matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketStrucRestricted matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
 
 " Popular Scheme extension:
 " using [] as well as ()
-syn region racketStrucRestricted matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketStrucRestricted matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketStrucRestricted matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketStrucRestricted matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
 
-syn region racketUnquote matchgroup=Delimiter start="," end=![ \t\[\]()";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@" end=![ \t\[\]()";]!me=e-1 contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start="," end=![ \t\[\]()";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",@" end=![ \t\[\]()";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
 
-syn region racketUnquote matchgroup=Delimiter start=",(" end=")" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start=",@(" end=")" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start=",(" end=")" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start=",@(" end=")" contains=TOP
 
-syn region racketUnquote matchgroup=Delimiter start=",#(" end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@#(" end=")" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",#(" end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",@#(" end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
 
-syn region racketUnquote matchgroup=Delimiter start=",\[" end="\]" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start=",@\[" end="\]" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start=",\[" end="\]" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start=",@\[" end="\]" contains=TOP
 
-syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=ALLBUT,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
 
 " syntax quoting, unquoting and quasiquotation
-syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=ALL
-syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=ALL
-syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=ALL
-syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=ALL
+syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=TOP
+syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP
+syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=TOP
 
 " This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
 syn match racketOther     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
@@ -296,11 +296,11 @@ syn match racketConstant  ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
 syn match racketError     ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
 
 " Non-quoted lists, and strings
-syn region racketStruc matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=ALL
-syn region racketStruc matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=ALL
+syn region racketStruc matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=TOP
+syn region racketStruc matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=TOP
 
-syn region racketStruc matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=ALL
-syn region racketStruc matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=ALL
+syn region racketStruc matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=TOP
+syn region racketStruc matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=TOP
 
 " Simple literals
 syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
