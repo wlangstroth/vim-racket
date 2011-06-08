@@ -240,12 +240,6 @@ syn match racketDelimiter !\.[ \t\[\]()";]!me=e-1
 syn match racketDelimiter !\.$!
 " ... and a single dot is not a number but a delimiter
 
-" Quoted and backquoted stuff
-syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
-
-syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
-
 syn region racketStrucRestricted matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
 syn region racketStrucRestricted matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
 
@@ -268,16 +262,6 @@ syn region racketUnquote matchgroup=Delimiter start=",@\[" end="\]" contains=TOP
 
 syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
 syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
-
-" syntax quoting, unquoting and quasiquotation
-syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=TOP
-syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP
-syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=TOP
 
 " This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
 syn match racketOther     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
@@ -335,6 +319,20 @@ syn match racketOther     "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
 syn match racketSyntax    "#lang "
 syn match racketExtSyntax "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+
+" syntax quoting, unquoting and quasiquotation
+syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
+
+syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=TOP
+syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=TOP
+syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP
+syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=TOP
 
 " Synchronization and the wrapping up...
 syn sync match matchPlace grouphere NONE "^[^ \t]"
