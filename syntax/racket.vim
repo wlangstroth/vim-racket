@@ -305,6 +305,8 @@ syn match racketChar    "#\\space"
 syn match racketError   !#\\space[^ \t\[\]()";]\+!
 syn match racketChar    "#\\newline"
 syn match racketError   !#\\newline[^ \t\[\]()";]\+!
+syn match racketChar    "#\\return"
+syn match racketError   !#\\return[^ \t\[\]()";]\+!
 
 
 " Command-line parsing
