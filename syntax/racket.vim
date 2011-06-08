@@ -2,7 +2,7 @@
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket.git
-" Last Change:  2011-04-12
+" Last Change:  2011-06-08
 " Description:  Contains all of the keywords in #lang racket
 
 " Initializing:
@@ -16,7 +16,7 @@ syn case ignore
 
 " Everything that doesn't fit the rules is an error...
 syn match racketError ![^ \t()\[\]";]*!
-syn match racketError ")"
+syn match racketError ,[])],
 
 if version < 600
   set iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
