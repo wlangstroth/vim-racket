@@ -41,7 +41,7 @@ s
 0#
 #b1
 2/1e5
--1.4e2.3@6.7d.2
+-1.4e2@6/7d2
 #xa
 #x-2
 #xab.
@@ -51,12 +51,18 @@ s
 -inf.f
 +nan.0
 -inf.f@5
-+nan.0@4e7.1
++nan.0@4e71
 -nan.0-inf.fi
-#xase.f-blci
-#x1#####.##s4#-i
+#xasef-blci
 #xe/9s4
-#b1.1e1.1@1.1e1.1
+#b1.1e1@1.1e11
+#x1#####.##s4#-1i
+
+; not allowed by the syntax according to the online docs, but the actual reader
+; accepts them, so they should probably be highlighted as numbers once someone
+; makes the necessary complications to the existing rules:
+-i
+#x1#####.##s4#-i
 
 ; these all have errors which should be highlighted:
 #x
@@ -82,7 +88,5 @@ s
 #x1####.##e4
 #x0499abcdefi
 #x.
-
-; should be errors, but currently undetected:
 #xe1.2-3.abds2
 #xe/2.4/3

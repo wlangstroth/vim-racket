@@ -14,8 +14,7 @@ endif
 
 syn case ignore
 
-" Everything that doesn't fit the rules is an error...
-syn match racketError ![^ \t()\[\]";]*!
+" Highlight unmatched parens
 syn match racketError ,[])],
 
 if version < 600
@@ -233,158 +232,144 @@ syn keyword racketFunc hash-iterate-first hash-iterate-next hash-iterate-key
 syn keyword racketFunc hash-iterate-value hash-copy eq-hash-code eqv-hash-code
 syn keyword racketFunc equal-hash-code equal-secondary-hash-code
 
-" ... so that a single + or -, inside a quoted context, would not be
-" interpreted as a number (outside such contexts, it's a racketFunc)
+syn match racketDelimiter !\<\.\>!
 
-syn match racketDelimiter !\.[ \t\[\]()";]!me=e-1
-syn match racketDelimiter !\.$!
-" ... and a single dot is not a number but a delimiter
+syn match racketSymbol    ,\k+,  contained
 
-syn region racketStrucRestricted matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketStrucRestricted matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn cluster racketNormal  contains=racketSyntax,racketFunc,racketDelimiter
+syn cluster racketQuotedStuff  contains=racketSymbol
+syn cluster racketQuotedOrNormal  contains=racketDelimiter
 
-" Popular Scheme extension:
-" using [] as well as ()
-syn region racketStrucRestricted matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketStrucRestricted matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn match racketConstant  ,\<\*\k\+\*\>,
+syn match racketConstant  ,\<<\k\+>\>,
 
-syn region racketUnquote matchgroup=Delimiter start="," end=![ \t\[\]()";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@" end=![ \t\[\]()";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
+syn region racketQuotedStruc start="("rs=s+1 end=")"re=e-1     contains=@racketQuotedStuff,@racketQuotedOrNormal contained
+syn region racketQuotedStruc start="#("rs=s+2 end=")"re=e-1    contains=@racketQuotedStuff,@racketQuotedOrNormal contained
+syn region racketQuotedStruc start="\["rs=s+1 end="\]"re=e-1   contains=@racketQuotedStuff,@racketQuotedOrNormal contained
+syn region racketQuotedStruc start="#\["rs=s+2 end="\]"re=e-1  contains=@racketQuotedStuff,@racketQuotedOrNormal contained
 
-syn region racketUnquote matchgroup=Delimiter start=",(" end=")" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start=",@(" end=")" contains=TOP
-
-syn region racketUnquote matchgroup=Delimiter start=",#(" end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@#(" end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
-
-syn region racketUnquote matchgroup=Delimiter start=",\[" end="\]" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start=",@\[" end="\]" contains=TOP
-
-syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
-
-" This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
-syn match racketOther     ,[-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
-syn match racketError     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@# \t\[\]()";]\+[^ \t\[\]()";]*,
-
-syn match racketOther     "\.\.\."
-syn match racketError     !\.\.\.[^ \t\[\]()";]\+!
-" ... a special identifier
-
-syn match racketConstant  ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[ \t\[\]()";],me=e-1
-syn match racketConstant  ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*$,
-syn match racketError     ,\*[-a-z!$%&*/:<=>?^_~0-9+.@]*\*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
-
-syn match racketConstant  ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[ \t\[\]()";],me=e-1
-syn match racketConstant  ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>$,
-syn match racketError     ,<[-a-z!$%&*/:<=>?^_~0-9+.@]*>[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn cluster racketQuotedStuff  add=racketQuotedStruc
 
 " Non-quoted lists, and strings
-syn region racketStruc matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" contains=TOP
-syn region racketStruc matchgroup=Delimiter start="#(" matchgroup=Delimiter end=")" contains=TOP
+syn region racketStruc matchgroup=Delimiter start="("rs=s+1 matchgroup=Delimiter end=")"re=e-1 contains=@racketNormal
+syn region racketStruc matchgroup=Delimiter start="#("rs=s+2 matchgroup=Delimiter end=")"re=e-1 contains=@racketNormal
 
-syn region racketStruc matchgroup=Delimiter start="\[" matchgroup=Delimiter end="\]" contains=TOP
-syn region racketStruc matchgroup=Delimiter start="#\[" matchgroup=Delimiter end="\]" contains=TOP
+syn region racketStruc matchgroup=Delimiter start="\["rs=s+1 matchgroup=Delimiter end="\]"re=e-1 contains=@racketNormal
+syn region racketStruc matchgroup=Delimiter start="#\["rs=s+2 matchgroup=Delimiter end="\]"re=e-1 contains=@racketNormal
 
 " Simple literals
 syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
 
-syn match racketOther   ![+-][ \t\[\]()";]!me=e-1
-syn match racketOther   ![+-]$!
+syn cluster racketNormal  add=racketError,racketConstant,racketStruc,racketString
+syn cluster racketQuotedOrNormal  add=racketString
 
-" exact numbers
-syn match racketNumberArea          "\<[-+0-9.][-+0-9delfinas#./@]*\>"                contains=racketNotReallyNumber
-syn match racketHexNumberArea       /\<\(#x\(#[ei]\)\?\|#[ei]#x\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketHexNumberError
-syn match racketDecNumberArea       /\<\(#d\(#[ei]\)\?\|#[ei]#d\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketGeneralNumberError
-syn match racketOctNumberArea       /\<\(#o\(#[ei]\)\?\|#[ei]#o\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketGeneralNumberError,racketOctNumberError
-syn match racketBinNumberArea       /\<\(#b\(#[ei]\)\?\|#[ei]#b\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketGeneralNumberError,racketBinNumberError
+" Numbers
 
-syn match racketHexNumberError      "\([^-+ai]n\|[-+][-+/@#ls]\|/[^0-9a-f]\|[@ls][/#lis@]\|\.[-+.ls]\|#[0-9a-f]\|i[lis/@]\|n[^af.]\|[^-+0-9a-fdlins#./@]\).*"  contained
-syn match racketHexNumberError      "[-+lns/@]$"  contained
-syn match racketHexNumberError      "[-+][^@sl]*[-+].*[^i]$"  contained
-syn match racketHexNumberError      "@.*@"  contained
+" anything which doesn't match the below rules, but starts with a #d, #b, #o,
+" #x, #i, or #e, is an error
+syn match racketNumberError         "\<#[xdobie]\k*"
 
-" racketGeneralNumberError and racketNotReallyNumber are essentially the same,
-" modulo the .* matches on the ends- if one occurs in a number area with no
-" #[dobx] radix qualifier, then it probably just means the number area isn't
-" actually a number area. otherwise, it's an error.
-syn match racketGeneralNumberError   "\([-+][-+/@#delfas]\|/[^0-9]\|\.[-+.na]\|#[0-9na]\|i[^n]\|[de@][delfinas/@]\|[ls][delfinas/@#]\|n[^af.]\|f[delfnas#/]\|a[^n]\|[0-9]n\)"   contained
-syn match racketNotReallyNumber    ".*\([-+][-+/@#delfas]\|/[^0-9]\|\.[-+.na]\|#[0-9na]\|i[^n]\|[de@][delfinas/@]\|[ls][delfinas/@#]\|n[^af.]\|f[delfnas#/]\|a[^n]\|[0-9]n\).*" contained contains=TOP
-syn match racketGeneralNumberError   "[-+delnas/@]$"                            contained
-syn match racketNotReallyNumber    ".*[-+delnas/@]$"                            contained contains=TOP
-syn match racketGeneralNumberError   "[-+][^@sdlef]*[-+].*[^i]$"                contained
-syn match racketNotReallyNumber    ".*[-+][^@sdlef]*[-+].*[^i]$"                contained contains=TOP
-syn match racketGeneralNumberError   "[sdle][^-+@]*[sdle]"                      contained
-syn match racketNotReallyNumber    ".*[sdle][^-+@]*[sdle].*"                    contained contains=TOP
-syn match racketGeneralNumberError   "@.*@"                                     contained
-syn match racketNotReallyNumber    ".*@.*@.*"                                   contained contains=TOP
-syn match racketGeneralNumberError   "in\([^f]\|f[^.]\|f\.[^0f]\|.\{0,2}$\).*"  contained
-syn match racketNotReallyNumber    ".*in\([^f]\|f[^.]\|f\.[^0f]\|.\{0,2}$\).*"  contained contains=TOP
-syn match racketGeneralNumberError   "na\([^n]\|n[^.]\|n\.[^0f]\|.\{0,2}$\).*"  contained
-syn match racketNotReallyNumber    ".*na\([^n]\|n[^.]\|n\.[^0f]\|.\{0,2}$\).*"  contained contains=TOP
-syn match racketGeneralNumberError   "[^-+]\(in\|na\).*"                        contained
-syn match racketNotReallyNumber    ".*[^-+]\(in\|na\).*"                        contained contains=TOP
-syn match racketGeneralNumberError   "[^i]nf"                                   contained
-syn match racketNotReallyNumber    ".*[^i]nf.*"                                 contained contains=TOP
-syn match racketNotReallyNumber    "^\.$"                                       contained contains=TOP
-syn match racketNotReallyNumber    "^[^-+]*i"                                   contained contains=TOP
+syn match racketContainedNumberError   "\<#o\k*[^-+0-7delfinas#./@]"
+syn match racketContainedNumberError   "\<#b\k*[^-+01delfinas#./@]"
+syn match racketContainedNumberError   "\<#[ei]#[ei]"
+syn match racketContainedNumberError   "\<#[xdob]#[xdob]"
 
-syn match racketGeneralNumberError  "[^-+0-9delfinas#./@]"  contained
-syn match racketOctNumberError      "[89]"  contained
-syn match racketBinNumberError      "[2-9]"  contained
+" start with the simpler sorts
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\d\+/\d\+\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\d\+/\d\+[-+]\d\+\(/\d\+\)\?i\>" contains=racketContainedNumberError
 
-syn match racketNumQuals  /^\(#[eidobx]\)\{1,2}/  contained transparent contains=NONE
+" different possible ways of expressing complex values
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?i\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?[-+]\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?i\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f][-+]\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?i\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?[-+]\(inf\|nan\)\.[0f]i\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?@[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]@[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[dobie]\)\{0,2}[-+]\?\(\d\+\|\d\+#*\.\|\d*\.\d\+\)#*\(/\d\+#*\)\?\([sdlef][-+]\?\d\+#*\)\?@[-+]\(inf\|nan\)\.[0f]\>" contains=racketContainedNumberError
 
-" these need to be after racketNumQuals; for some reason, ^ won't work for
-" contained matches that follow another contained match. these match the
-" whole number string instead of the part after racketNumQuals.
-syn match racketHexNumberError       "^\(#[eix]\)*[^-+]*i"  contained
-syn match racketGeneralNumberError   "^\(#[eidob]\)[^-+]*i" contained
-syn match racketHexNumberError       "^\(#[eix]\)*\.$"      contained
-syn match racketGeneralNumberError   "^\(#[eidob]\)*\.$"    contained
+" hex versions of the above (separate because of the different possible exponent markers)
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\x\+/\x\+\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\x\+/\x\+[-+]\x\+\(/\x\+\)\?i\>"
 
-syn match racketError   !\(#[xdobei]\)\+\>!
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?i\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?[-+]\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?i\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\(inf\|nan\)\.[0f][-+]\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?i\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?[-+]\(inf\|nan\)\.[0f]i\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?@[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\(inf\|nan\)\.[0f]@[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?\>"
+syn match racketNumber    "\<\(#x\|#[ei]#x\|#x#[ei]\)[-+]\?\(\x\+\|\x\+#*\.\|\x*\.\x\+\)#*\(/\x\+#*\)\?\([sl][-+]\?\x\+#*\)\?@[-+]\(inf\|nan\)\.[0f]\>"
 
-syn match racketBoolean "#[tf]"
-syn match racketError   !#[tf][^ \t\[\]()";]\+!
+" these work for any radix
+syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]i\?\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f][-+]\(inf\|nan\)\.[0f]i\>" contains=racketContainedNumberError
+syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]@[-+]\(inf\|nan\)\.[0f]\>" contains=racketContainedNumberError
 
-syn match racketChar    "#\\"
-syn match racketChar    "#\\."
-syn match racketError   !#\\.[^ \t\[\]()";]\+!
-syn match racketChar    "#\\space"
-syn match racketError   !#\\space[^ \t\[\]()";]\+!
-syn match racketChar    "#\\newline"
-syn match racketError   !#\\newline[^ \t\[\]()";]\+!
-syn match racketChar    "#\\return"
-syn match racketError   !#\\return[^ \t\[\]()";]\+!
+syn keyword racketBoolean  #t #f
 
+syn match racketError   "\<#\\\k*\>"
+syn match racketChar    "\<#\\.\>"
+syn match racketChar    "\<#\\space\>"
+syn match racketChar    "\<#\\newline\>"
+syn match racketChar    "\<#\\return\>"
+syn match racketChar    "\<#\\null\?\>"
+syn match racketChar    "\<#\\backspace\>"
+syn match racketChar    "\<#\\tab\>"
+syn match racketChar    "\<#\\linefeed\>"
+syn match racketChar    "\<#\\vtab\>"
+syn match racketChar    "\<#\\page\>"
+syn match racketChar    "\<#\\rubout\>"
+syn match racketChar    "\<#\\[0-7]\{1,3}\>"
+syn match racketChar    "\<#\\x[0-9a-f]\{1,2}\>"
+syn match racketChar    "\<#\\u[0-9a-f]\{1,6}\>"
+
+syn cluster racketNormal  add=racketNumber,racketBoolean,racketChar
+syn cluster racketQuotedOrNormal  add=racketNumber,racketBoolean,racketChar
 
 " Command-line parsing
 syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each
 
-
-syn match racketOther     "##[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
-
 syn match racketSyntax    "#lang "
 syn match racketExtSyntax "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
 
-" syntax quoting, unquoting and quasiquotation
-syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
-syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=TOP,racketStruc,racketSyntax,racketFunc
+syn cluster racketNormal  add=racketExtFunc,racketExtSyntax
 
-syn region racketUnquote matchgroup=Delimiter start="#," end=![ \t\[\]()";]!me=e-1 contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,@" end=![ \t\[\]()";]!me=e-1 contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,(" end=")" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,@(" end=")" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,\[" end="\]" contains=TOP
-syn region racketUnquote matchgroup=Delimiter start="#,@\[" end="\]" contains=TOP
-syn region racketQuoted matchgroup=Delimiter start="#['`]" end=![ \t()\[\]";]!me=e-1 contains=TOP
-syn region racketQuoted matchgroup=Delimiter start="#['`](" matchgroup=Delimiter end=")" contains=TOP
+
+" syntax quoting, unquoting and quasiquotation
+syn region racketQuoted matchgroup=Delimiter start="['`]"rs=s+1 end=![ \t()\[\]";]!re=e-1,me=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
+syn region racketQuoted matchgroup=Delimiter start="['`]("rs=s+2 matchgroup=Delimiter end=")"re=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
+syn region racketQuoted matchgroup=Delimiter start="['`]#("rs=s+3 matchgroup=Delimiter end=")"re=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
+
+syn region racketUnquote matchgroup=Delimiter start="\<#,"rs=s+2 end=![ \t\[\]()";]!re=e-1,me=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<#,@"rs=s+3 end=![ \t\[\]()";]!re=e-1,me=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<#,("rs=s+3 end=")"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<#,@("rs=s+4 end=")"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<#,\["rs=s+3 end="\]"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<#,@\["rs=s+4 end="\]"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,"rs=s+1 end=![ \t\[\]()";]!re=e-1,me=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,@"rs=s+2 end=![ \t\[\]()";]!re=e-1,me=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,("rs=s+2 end=")"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,@("rs=s+3 end=")"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,#("rs=s+3 end=")"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,@#("rs=s+4 end=")"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,\["rs=s+2 end="\]"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,@\["rs=s+3 end="\]"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,#\["rs=s+3 end="\]"re=e-1 contained contains=@racketNormal
+syn region racketUnquote matchgroup=Delimiter start="\<,@#\["rs=s+4 end="\]"re=e-1 contained contains=@racketNormal
+
+syn cluster racketQuotedStuff add=racketUnquote
+
+syn region racketQuoted matchgroup=Delimiter start="#['`]"rs=s+2 end=![ \t()\[\]";]!re=e-1,me=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
+syn region racketQuoted matchgroup=Delimiter start="#['`]("rs=s+3 matchgroup=Delimiter end=")"re=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
 
 " Comments
 syn match racketComment /;.*$/
 syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
+
+syn cluster racketNormal  add=racketQuoted,racketComment,racketMultilineComment
+syn cluster racketQuotedOrNormal  add=racketComment,racketMultilineComment
+
 
 " Synchronization and the wrapping up...
 syn sync match matchPlace grouphere NONE "^[^ \t]"
@@ -406,20 +391,14 @@ if version >= 508 || !exists("did_racket_syntax_inits")
 
   HiLink racketString             String
   HiLink racketChar               Character
-  HiLink racketNumber             Number
   HiLink racketBoolean            Boolean
 
-  HiLink racketNumberArea         Number
-  HiLink racketHexNumberArea      Number
-  HiLink racketDecNumberArea      Number
-  HiLink racketOctNumberArea      Number
-  HiLink racketBinNumberArea      Number
-  HiLink racketGeneralNumberError Error
-  HiLink racketHexNumberError     Error
-  HiLink racketOctNumberError     Error
-  HiLink racketBinNumberError     Error
+  HiLink racketNumber             Number
+  HiLink racketNumberError        Error
+  HiLink racketContainedNumberError Error
 
-  HiLink racketQuoted             Special
+  HiLink racketQuoted             Constant
+  HiLink racketSymbol             Constant
 
   HiLink racketDelimiter          Delimiter
   HiLink racketConstant           Constant
