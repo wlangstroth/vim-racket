@@ -264,8 +264,8 @@ syn region racketUnquote matchgroup=Delimiter start=",#\[" end="\]" contains=TOP
 syn region racketUnquote matchgroup=Delimiter start=",@#\[" end="\]" contains=TOP,racketStruc,racketSyntax,racketFunc
 
 " This keeps all other stuff unhighlighted, except *stuff* and <stuff>:
-syn match racketOther     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
-syn match racketError     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@ \t\[\]()";]\+[^ \t\[\]()";]*,
+syn match racketOther     ,[-a-z!$%&*/:<=>?^_~0-9+.@#%]*,
+syn match racketError     ,[a-z!$%&*/:<=>?^_~+@#%-][-a-z!$%&*/:<=>?^_~0-9+.@#%]*[^-a-z!$%&*/:<=>?^_~0-9+.@# \t\[\]()";]\+[^ \t\[\]()";]*,
 
 syn match racketOther     "\.\.\."
 syn match racketError     !\.\.\.[^ \t\[\]()";]\+!
@@ -292,8 +292,58 @@ syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
 syn match racketOther   ![+-][ \t\[\]()";]!me=e-1
 syn match racketOther   ![+-]$!
 
-syn match racketNumber  "[-#+0-9.][-#+/0-9a-f@i.boxesfdl]*"
-syn match racketError   ![-#+0-9.][-#+/0-9a-f@i.boxesfdl]*[^-#+/0-9a-f@i.boxesfdl \t\[\]()";][^ \t\[\]()";]*!
+" exact numbers
+syn match racketNumberArea          "\<[-+0-9.][-+0-9delfinas#./@]*\>"                contains=racketNotReallyNumber
+syn match racketHexNumberArea       /\<\(#x\(#[ei]\)\?\|#[ei]#x\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketHexNumberError
+syn match racketDecNumberArea       /\<\(#d\(#[ei]\)\?\|#[ei]#d\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketGeneralNumberError
+syn match racketOctNumberArea       /\<\(#o\(#[ei]\)\?\|#[ei]#o\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketGeneralNumberError,racketOctNumberError
+syn match racketBinNumberArea       /\<\(#b\(#[ei]\)\?\|#[ei]#b\)[^ \t\[\]()";]\+\>/  contains=racketNumQuals,racketGeneralNumberError,racketBinNumberError
+
+syn match racketHexNumberError      "\([^-+ai]n\|[-+][-+/@#ls]\|/[^0-9a-f]\|[@ls][/#lis@]\|\.[-+.ls]\|#[0-9a-f]\|i[lis/@]\|n[^af.]\|[^-+0-9a-fdlins#./@]\).*"  contained
+syn match racketHexNumberError      "[-+lns/@]$"  contained
+syn match racketHexNumberError      "[-+][^@sl]*[-+].*[^i]$"  contained
+syn match racketHexNumberError      "@.*@"  contained
+
+" racketGeneralNumberError and racketNotReallyNumber are essentially the same,
+" modulo the .* matches on the ends- if one occurs in a number area with no
+" #[dobx] radix qualifier, then it probably just means the number area isn't
+" actually a number area. otherwise, it's an error.
+syn match racketGeneralNumberError   "\([-+][-+/@#delfas]\|/[^0-9]\|\.[-+.na]\|#[0-9na]\|i[^n]\|[de@][delfinas/@]\|[ls][delfinas/@#]\|n[^af.]\|f[delfnas#/]\|a[^n]\|[0-9]n\)"   contained
+syn match racketNotReallyNumber    ".*\([-+][-+/@#delfas]\|/[^0-9]\|\.[-+.na]\|#[0-9na]\|i[^n]\|[de@][delfinas/@]\|[ls][delfinas/@#]\|n[^af.]\|f[delfnas#/]\|a[^n]\|[0-9]n\).*" contained contains=TOP
+syn match racketGeneralNumberError   "[-+delnas/@]$"                            contained
+syn match racketNotReallyNumber    ".*[-+delnas/@]$"                            contained contains=TOP
+syn match racketGeneralNumberError   "[-+][^@sdlef]*[-+].*[^i]$"                contained
+syn match racketNotReallyNumber    ".*[-+][^@sdlef]*[-+].*[^i]$"                contained contains=TOP
+syn match racketGeneralNumberError   "[sdle][^-+@]*[sdle]"                      contained
+syn match racketNotReallyNumber    ".*[sdle][^-+@]*[sdle].*"                    contained contains=TOP
+syn match racketGeneralNumberError   "@.*@"                                     contained
+syn match racketNotReallyNumber    ".*@.*@.*"                                   contained contains=TOP
+syn match racketGeneralNumberError   "in\([^f]\|f[^.]\|f\.[^0f]\|.\{0,2}$\).*"  contained
+syn match racketNotReallyNumber    ".*in\([^f]\|f[^.]\|f\.[^0f]\|.\{0,2}$\).*"  contained contains=TOP
+syn match racketGeneralNumberError   "na\([^n]\|n[^.]\|n\.[^0f]\|.\{0,2}$\).*"  contained
+syn match racketNotReallyNumber    ".*na\([^n]\|n[^.]\|n\.[^0f]\|.\{0,2}$\).*"  contained contains=TOP
+syn match racketGeneralNumberError   "[^-+]\(in\|na\).*"                        contained
+syn match racketNotReallyNumber    ".*[^-+]\(in\|na\).*"                        contained contains=TOP
+syn match racketGeneralNumberError   "[^i]nf"                                   contained
+syn match racketNotReallyNumber    ".*[^i]nf.*"                                 contained contains=TOP
+syn match racketNotReallyNumber    "^\.$"                                       contained contains=TOP
+syn match racketNotReallyNumber    "^[^-+]*i"                                   contained contains=TOP
+
+syn match racketGeneralNumberError  "[^-+0-9delfinas#./@]"  contained
+syn match racketOctNumberError      "[89]"  contained
+syn match racketBinNumberError      "[2-9]"  contained
+
+syn match racketNumQuals  /^\(#[eidobx]\)\{1,2}/  contained transparent contains=NONE
+
+" these need to be after racketNumQuals; for some reason, ^ won't work for
+" contained matches that follow another contained match. these match the
+" whole number string instead of the part after racketNumQuals.
+syn match racketHexNumberError       "^\(#[eix]\)*[^-+]*i"  contained
+syn match racketGeneralNumberError   "^\(#[eidob]\)[^-+]*i" contained
+syn match racketHexNumberError       "^\(#[eix]\)*\.$"      contained
+syn match racketGeneralNumberError   "^\(#[eidob]\)*\.$"    contained
+
+syn match racketError   !\(#[xdobei]\)\+\>!
 
 syn match racketBoolean "#[tf]"
 syn match racketError   !#[tf][^ \t\[\]()";]\+!
@@ -358,6 +408,16 @@ if version >= 508 || !exists("did_racket_syntax_inits")
   HiLink racketChar               Character
   HiLink racketNumber             Number
   HiLink racketBoolean            Boolean
+
+  HiLink racketNumberArea         Number
+  HiLink racketHexNumberArea      Number
+  HiLink racketDecNumberArea      Number
+  HiLink racketOctNumberArea      Number
+  HiLink racketBinNumberArea      Number
+  HiLink racketGeneralNumberError Error
+  HiLink racketHexNumberError     Error
+  HiLink racketOctNumberError     Error
+  HiLink racketBinNumberError     Error
 
   HiLink racketQuoted             Special
 
