@@ -334,7 +334,7 @@ syn cluster racketQuotedOrNormal  add=racketNumber,racketBoolean,racketChar
 syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each
 
 syn match racketSyntax    "#lang "
-syn match racketExtSyntax "#:[-a-z!$%&*/:<=>?^_~0-9+.@#%]\+"
+syn match racketExtSyntax "#:\k\+"
 
 syn cluster racketNormal  add=racketExtFunc,racketExtSyntax
 
