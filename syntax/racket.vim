@@ -54,6 +54,9 @@ syn keyword racketSyntax define* define*-values define*-syntax define*-syntaxes 
 syn keyword racketSyntax package? package-exported-identifiers package-original-identifiers
 syn keyword racketSyntax block #%stratified-body
 
+" lambda sign
+syn match racketSyntax /\<[\u03bb]\>/
+
 " Functions
 
 syn keyword racketFunc boolean? not equal? eqv? eq? equal?/recur immutable?
@@ -398,6 +401,7 @@ if version >= 508 || !exists("did_racket_syntax_inits")
   HiLink racketContainedNumberError Error
 
   HiLink racketQuoted             Constant
+  HiLink racketQuotedStruc        Constant
   HiLink racketSymbol             Constant
 
   HiLink racketDelimiter          Delimiter
