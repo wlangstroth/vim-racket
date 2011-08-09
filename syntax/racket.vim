@@ -235,6 +235,15 @@ syn keyword racketFunc hash-iterate-first hash-iterate-next hash-iterate-key
 syn keyword racketFunc hash-iterate-value hash-copy eq-hash-code eqv-hash-code
 syn keyword racketFunc equal-hash-code equal-secondary-hash-code
 
+" 3.16 Sets
+syn keyword racketFunc set seteqv seteq set-empty? set-count set-member?
+syn keyword racketFunc set-add set-remove set-union set-intersect set-subtract
+syn keyword racketFunc set-symmetric-difference set=? subset? proper-subset?
+syn keyword racketFunc set-map set-for-each set? set-equal? set-eqv? set-eq?
+syn keyword racketFunc set/c in-set for/set for/seteq for/seteqv for*/set
+syn keyword racketFunc for*/seteq for*/seteqv list->set list->seteq
+syn keyword racketFunc list->seteqv set->list
+
 " 3.17 Procedures
 syn keyword racketFunc procedure? apply compose compose1 procedure-rename procedure->method
 syn keyword racketFunc keyword-apply procedure-arity procedure-arity?
