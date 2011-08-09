@@ -221,7 +221,21 @@ syn keyword racketFunc make-hasheqv-placeholder make-immutable-hasheqv
 " 3.10 Mutable Pairs and Lists
 syn keyword racketFunc mpair? mcons mcar mcdr
 
+" 3.11 Vectors
+syn keyword racketFunc vector?  make-vector vector vector-immutable vector-length
+syn keyword racketFunc vector-ref vector-set!  vector->list list->vector
+syn keyword racketFunc vector->immutable-vector vector-fill!  vector-copy!
+syn keyword racketFunc vector->values build-vector vector-set*!  vector-map
+syn keyword racketFunc vector-map!  vector-append vector-take vector-take-right
+syn keyword racketFunc vector-drop vector-drop-right vector-split-at
+syn keyword racketFunc vector-split-at-right vector-copy vector-filter
+syn keyword racketFunc vector-filter-not vector-count vector-argmin vector-argmax
+syn keyword racketFunc vector-member vector-memv vector-memq
 
+" 3.12 Boxes
+syn keyword racketFunc box?  box box-immutable unbox set-box!
+
+" 3.13 Hash Tables
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
 syn keyword racketFunc hasheq hasheqv
 syn keyword racketFunc make-hash make-hasheqv make-hasheq make-weak-hash make-weak-hasheqv
@@ -234,6 +248,39 @@ syn keyword racketFunc hash->list hash-for-each hash-count
 syn keyword racketFunc hash-iterate-first hash-iterate-next hash-iterate-key
 syn keyword racketFunc hash-iterate-value hash-copy eq-hash-code eqv-hash-code
 syn keyword racketFunc equal-hash-code equal-secondary-hash-code
+
+" 3.15 Dictionaries
+syn keyword racketFunc dict? dict-mutable? dict-can-remove-keys? dict-can-functional-set?
+syn keyword racketFunc dict-set! dict-set*! dict-set dict-set* dict-has-key? dict-ref
+syn keyword racketFunc dict-ref! dict-update! dict-update dict-remove! dict-remove
+syn keyword racketFunc dict-map dict-for-each dict-count dict-iterate-first dict-iterate-next
+syn keyword racketFunc dict-iterate-key dict-iterate-value in-dict in-dict-keys
+syn keyword racketFunc in-dict-values in-dict-pairs dict-keys dict-values
+syn keyword racketFunc dict->list prop: dict prop: dict/contract dict-key-contract
+syn keyword racketFunc dict-value-contract dict-iter-contract make-custom-hash
+syn keyword racketFunc make-immutable-custom-hash make-weak-custom-hash
+
+" 3.16 Sets
+syn keyword racketFunc set seteqv seteq set-empty? set-count set-member?
+syn keyword racketFunc set-add set-remove set-union set-intersect set-subtract
+syn keyword racketFunc set-symmetric-difference set=? subset? proper-subset?
+syn keyword racketFunc set-map set-for-each set? set-equal? set-eqv? set-eq?
+syn keyword racketFunc set/c in-set for/set for/seteq for/seteqv for*/set
+syn keyword racketFunc for*/seteq for*/seteqv list->set list->seteq
+syn keyword racketFunc list->seteqv set->list
+
+" 3.17 Procedures
+syn keyword racketFunc procedure? apply compose compose1 procedure-rename procedure->method
+syn keyword racketFunc keyword-apply procedure-arity procedure-arity?
+syn keyword racketFunc procedure-arity-includes? procedure-reduce-arity
+syn keyword racketFunc procedure-keywords make-keyword-procedure
+syn keyword racketFunc procedure-reduce-keyword-arity procedure-struct-type?
+syn keyword racketFunc procedure-extract-target checked-procedure-check-and-extract
+syn keyword racketFunc primitive? primitive-closure? primitive-result-arity
+syn keyword racketFunc identity const thunk thunk* negate curry curryr
+
+" 3.18 Void
+syn keyword racketFunc void void?
 
 syn match racketDelimiter !\<\.\>!
 
@@ -309,7 +356,7 @@ syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]i\?\>" con
 syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f][-+]\(inf\|nan\)\.[0f]i\>" contains=racketContainedNumberError
 syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]@[-+]\(inf\|nan\)\.[0f]\>" contains=racketContainedNumberError
 
-syn keyword racketBoolean  #t #f
+syn keyword racketBoolean  #t #f #true #false #T #F
 
 syn match racketError   "\<#\\\k*\>"
 syn match racketChar    "\<#\\.\>"
