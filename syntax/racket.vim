@@ -221,7 +221,7 @@ syn keyword racketFunc make-hasheqv-placeholder make-immutable-hasheqv
 " 3.10 Mutable Pairs and Lists
 syn keyword racketFunc mpair? mcons mcar mcdr
 
-
+" 3.13 Hash Tables
 syn keyword racketFunc hash? hash-equal? hash-eqv? hash-eq? hash-weak? hash
 syn keyword racketFunc hasheq hasheqv
 syn keyword racketFunc make-hash make-hasheqv make-hasheq make-weak-hash make-weak-hasheqv
@@ -234,6 +234,16 @@ syn keyword racketFunc hash->list hash-for-each hash-count
 syn keyword racketFunc hash-iterate-first hash-iterate-next hash-iterate-key
 syn keyword racketFunc hash-iterate-value hash-copy eq-hash-code eqv-hash-code
 syn keyword racketFunc equal-hash-code equal-secondary-hash-code
+
+" 3.17 Procedures
+syn keyword racketFunc procedure? apply compose compose1 procedure-rename procedure->method
+syn keyword racketFunc keyword-apply procedure-arity procedure-arity?
+syn keyword racketFunc procedure-arity-includes? procedure-reduce-arity
+syn keyword racketFunc procedure-keywords make-keyword-procedure
+syn keyword racketFunc procedure-reduce-keyword-arity procedure-struct-type?
+syn keyword racketFunc procedure-extract-target checked-procedure-check-and-extract
+syn keyword racketFunc primitive? primitive-closure? primitive-result-arity
+syn keyword racketFunc identity const thunk thunk* negate curry curryr
 
 syn match racketDelimiter !\<\.\>!
 
