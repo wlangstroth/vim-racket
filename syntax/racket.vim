@@ -356,7 +356,7 @@ syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]i\?\>" con
 syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f][-+]\(inf\|nan\)\.[0f]i\>" contains=racketContainedNumberError
 syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]@[-+]\(inf\|nan\)\.[0f]\>" contains=racketContainedNumberError
 
-syn keyword racketBoolean  #t #f
+syn keyword racketBoolean  #t #f #true #false #T #F
 
 syn match racketError   "\<#\\\k*\>"
 syn match racketChar    "\<#\\.\>"
