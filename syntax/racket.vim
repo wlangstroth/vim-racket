@@ -283,8 +283,11 @@ syn keyword racketFunc identity const thunk thunk* negate curry curryr
 " 3.18 Void
 syn keyword racketFunc void void?
 
-" 4.1 Structures
-syn keyword struct
+" 4.1 Defining Structure Types
+syn keyword struct define-struct define-struct define-struct/derived
+
+" 4.2 Creating Structure Types
+syn keyword make-struct-type make-struct-field-accessor make-struct-field-mutator
 
 
 syn match racketDelimiter !\<\.\>!
