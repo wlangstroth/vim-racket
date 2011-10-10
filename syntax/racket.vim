@@ -292,6 +292,10 @@ syn keyword racketFunc make-struct-type make-struct-field-accessor make-struct-f
 " 4.3 Structure Type Properties
 syn keyword racketFunc make-struct-type-property struct-type-property? struct-type-property-accessor-procedure?
 
+" 4.4 Copying and Updating Structures
+syn keyword racketFunc struct-copy
+
+
 syn match racketDelimiter !\<\.\>!
 
 syn match racketSymbol    ,\k+,  contained
