@@ -283,6 +283,10 @@ syn keyword racketFunc identity const thunk thunk* negate curry curryr
 " 3.18 Void
 syn keyword racketFunc void void?
 
+" 4.1 Structures
+syn keyword struct
+
+
 syn match racketDelimiter !\<\.\>!
 
 syn match racketSymbol    ,\k+,  contained
