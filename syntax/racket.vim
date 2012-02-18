@@ -2,7 +2,7 @@
 " Language:     Racket 5.1
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket.git
-" Last Change:  2011-06-08
+" Last Change:  2012-02-18
 " Description:  Contains all of the keywords in #lang racket
 
 " Initializing:
@@ -284,7 +284,7 @@ syn keyword racketFunc identity const thunk thunk* negate curry curryr
 syn keyword racketFunc void void?
 
 " 4.1 Defining Structure Types
-syn keyword racketFunc struct define-struct define-struct define-struct/derived
+syn keyword racketFunc struct struct-field-index define-struct define-struct define-struct/derived
 
 " 4.2 Creating Structure Types
 syn keyword racketFunc make-struct-type make-struct-field-accessor make-struct-field-mutator
@@ -295,6 +295,28 @@ syn keyword racketFunc make-struct-type-property struct-type-property? struct-ty
 " 4.4 Copying and Updating Structures
 syn keyword racketFunc struct-copy
 
+" 4.5 Structure Utilities
+syn keyword racketFunc struct->vector struct? struct-type?
+syn keyword racketFunc struct-constructor-procedure? struct-predicate-procedure? struct-accessor-procedure? struct-mutator-procedure?
+syn keyword racketFunc prefab-struct-key make-prefab-struct prefab-key->struct-type
+
+" 4.6 Structure Type Transformer Binding
+syn keyword racketFunc struct-info? check-struct-info? make-struct-info extract-struct-info
+syn keyword racketFunc struct-auto-info? struct-auto-info-lists
+
+" 14.1.1 Manipulating Paths
+syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
+syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
+syn keyword racketFunc path-convention-type system-path-convention-type build-type
+syn keyword racketFunc build-type/convention-type
+syn keyword racketFunc absolute-path? relative-path? complete-path?
+syn keyword racketFunc path->complete-path path->directory-path
+syn keyword racketFunc resolve-path cleanse-path expand-user-path simplify-path normal-case-path split-path
+syn keyword racketFunc path-replace-suffix path-add-suffix
+
+" 14.1.2 More Path Utilities
+syn keyword racketFunc explode-path file-name-from-path filename-extension find-relative-path normalize-path
+syn keyword racketFunc path-element? path-only simple-form-path some-simple-path->string string->some-system-path
 
 syn match racketDelimiter !\<\.\>!
 
