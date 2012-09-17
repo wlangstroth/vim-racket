@@ -330,6 +330,14 @@ syn keyword racketFunc member-name-key=? member-name-key-hash-code
 syn keyword racketFunc make-object instantiate new
 syn keyword racketFunc super-make-object super-instantiate super-new
 
+"5.4 Field and Method Access
+syn keyword racketFunc method-id send send/apply send/keyword-apply dynamic-send send*
+syn keyword racketFunc get-field set-field! field-bound?
+syn keyword racketFunc class-field-accessor class-field-mutator
+
+"5.4.3 Generics
+syn keyword racketFunc generic send-generic make-generic
+
 
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
