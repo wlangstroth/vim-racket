@@ -326,6 +326,11 @@ syn keyword racketFunc super inner define-local-member-name define-member-name
 syn keyword racketFunc member-name-key generate-member-key member-name-key?
 syn keyword racketFunc member-name-key=? member-name-key-hash-code
 
+" 5.3 Creating Objects
+syn keyword racketFunc make-object instantiate new
+syn keyword racketFunc super-make-object super-instantiate super-new
+
+
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
 syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
