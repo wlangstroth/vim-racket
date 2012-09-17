@@ -304,6 +304,28 @@ syn keyword racketFunc prefab-struct-key make-prefab-struct prefab-key->struct-t
 syn keyword racketFunc struct-info? check-struct-info? make-struct-info extract-struct-info
 syn keyword racketFunc struct-auto-info? struct-auto-info-lists
 
+" 5.1 Creating Interfaces
+syn keyword racketFunc interface interface*
+
+" 5.2 Creating Classes
+syn keyword racketFunc class* class inspect
+syn keyword racketFunc init init-field field inherit field init-rest
+syn keyword racketFunc public public* pubment pubment* public-final public-final*
+syn keyword racketFunc override override* overment overment* override-final override-final*
+syn keyword racketFunc augride augride* augment augment* augment-final augment-final*
+syn keyword racketFunc abstract inherit inherit/super inherit/inner
+syn keyword racketFunc rename-inner rename-super
+syn keyword racketFunc define/public define/pubment define/public-final
+syn keyword racketFunc define/override define/overment define/override-final
+syn keyword racketFunc define/augride define/augment define/augment-final
+syn keyword racketFunc private* define/private
+
+" 5.2.3 Methods
+syn keyword racketFunc class/derived
+syn keyword racketFunc super inner define-local-member-name define-member-name
+syn keyword racketFunc member-name-key generate-member-key member-name-key?
+syn keyword racketFunc member-name-key=? member-name-key-hash-code
+
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
 syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
@@ -317,6 +339,8 @@ syn keyword racketFunc path-replace-suffix path-add-suffix
 " 14.1.2 More Path Utilities
 syn keyword racketFunc explode-path file-name-from-path filename-extension find-relative-path normalize-path
 syn keyword racketFunc path-element? path-only simple-form-path some-simple-path->string string->some-system-path
+
+
 
 syn match racketDelimiter !\<\.\>!
 
