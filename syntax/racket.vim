@@ -55,6 +55,22 @@ syn keyword racketSyntax define* define*-values define*-syntax define*-syntaxes 
 syn keyword racketSyntax package? package-exported-identifiers package-original-identifiers
 syn keyword racketSyntax block #%stratified-body
 
+" 12.5 Writing
+syn keyword racketSyntax write display displayln print
+syn keyword racketSyntax fprintf printf eprintf format
+syn keyword racketSyntax print-pair-curly-braces print-mpair-curly-braces print-unreadable
+syn keyword racketSyntax print-graph print-struct print-box print-vector-length print-hash-table
+syn keyword racketSyntax print-boolean-long-form print-reader-abbreviations print-as-expression print-syntax-width
+syn keyword racketSyntax current-write-relative-directory port-write-handler port-display-handler
+syn keyword racketSyntax port-print-handler global-port-print-handler
+
+
+" 13.7 Custodians
+syn keyword racketSyntax custodian? custodian-memory-accounting-available? custodian-box?
+syn keyword racketSyntax make-custodian custodian-shutdown-all current-custodian custodian-managed-list
+syn keyword racketSyntax custodian-require-memory custodian-limit-memory
+syn keyword racketSyntax make-custodian-box custodian-box-value
+
 " lambda sign
 syn match racketSyntax /\<[\u03bb]\>/
 
@@ -337,12 +353,6 @@ syn keyword racketFunc class-field-accessor class-field-mutator
 
 "5.4.3 Generics
 syn keyword racketFunc generic send-generic make-generic
-
-" 13.7 Custodians
-syn keyword racketFunc custodian? custodian-memory-accounting-available? custodian-box?
-syn keyword racketFunc make-custodian custodian-shutdown-all current-custodian custodian-managed-list
-syn keyword racketFunc custodian-require-memory custodian-limit-memory
-syn keyword racketFunc make-custodian-box custodian-box-value
 
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
