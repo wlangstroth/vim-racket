@@ -338,6 +338,11 @@ syn keyword racketFunc class-field-accessor class-field-mutator
 "5.4.3 Generics
 syn keyword racketFunc generic send-generic make-generic
 
+" 13.7 Custodians
+syn keyword racketFunc custodian? custodian-memory-accounting-available? custodian-box?
+syn keyword racketFunc make-custodian custodian-shutdown-all current-custodian custodian-managed-list
+syn keyword racketFunc custodian-require-memory custodian-limit-memory
+syn keyword racketFunc make-custodian-box custodian-box-value
 
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
