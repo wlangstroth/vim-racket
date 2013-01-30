@@ -447,6 +447,7 @@ syn match racketNumber    "\<\(#[xdobie]\)\{0,2}[-+]\(inf\|nan\)\.[0f]@[-+]\(inf
 syn keyword racketBoolean  #t #f #true #false #T #F
 
 syn match racketError   "\<#\\\k*\>"
+
 syn match racketChar    "\<#\\.\>"
 syn match racketChar    "\<#\\space\>"
 syn match racketChar    "\<#\\newline\>"
@@ -463,7 +464,7 @@ syn match racketChar    "\<#\\x[0-9a-f]\{1,2}\>"
 syn match racketChar    "\<#\\u[0-9a-f]\{1,6}\>"
 
 syn cluster racketNormal  add=racketNumber,racketBoolean,racketChar
-syn cluster racketQuotedOrNormal  add=racketNumber,racketBoolean,racketChar
+syn cluster racketQuotedOrNormal  add=racketNumber,racketBoolean
 
 " Command-line parsing
 syn keyword racketExtFunc command-line current-command-line-arguments once-any help-labels multi once-each
