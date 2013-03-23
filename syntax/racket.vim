@@ -15,7 +15,7 @@ endif
 syn case ignore
 
 " Highlight unmatched parens
-syn match racketError ,[])],
+syn match racketError ,[]})],
 
 if version < 600
   set iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
@@ -36,6 +36,7 @@ syn keyword racketSyntax if cond and or case define
 syn keyword racketSyntax define define-values define-syntax define-syntaxes
 syn keyword racketSyntax define-for-syntax define-require-syntax define-provide-syntax
 syn keyword racketSyntax define-syntax-rule
+syn keyword racketSyntax define-record-type
 syn keyword racketSyntax begin begin0 begin-for-syntax
 syn keyword racketSyntax when unless
 syn keyword racketSyntax set! set!-values
@@ -383,6 +384,8 @@ syn match racketConstant  ,\<<\k\+>\>,
 
 syn region racketQuotedStruc start="("rs=s+1 end=")"re=e-1     contains=@racketQuotedStuff,@racketQuotedOrNormal contained
 syn region racketQuotedStruc start="#("rs=s+2 end=")"re=e-1    contains=@racketQuotedStuff,@racketQuotedOrNormal contained
+syn region racketQuotedStruc start="{"rs=s+1 end="}"re=e-1   contains=@racketQuotedStuff,@racketQuotedOrNormal contained
+syn region racketQuotedStruc start="#{"rs=s+2 end="}"re=e-1  contains=@racketQuotedStuff,@racketQuotedOrNormal contained
 syn region racketQuotedStruc start="\["rs=s+1 end="\]"re=e-1   contains=@racketQuotedStuff,@racketQuotedOrNormal contained
 syn region racketQuotedStruc start="#\["rs=s+2 end="\]"re=e-1  contains=@racketQuotedStuff,@racketQuotedOrNormal contained
 
@@ -391,7 +394,8 @@ syn cluster racketQuotedStuff  add=racketQuotedStruc
 " Non-quoted lists, and strings
 syn region racketStruc matchgroup=Delimiter start="("rs=s+1 matchgroup=Delimiter end=")"re=e-1 contains=@racketNormal
 syn region racketStruc matchgroup=Delimiter start="#("rs=s+2 matchgroup=Delimiter end=")"re=e-1 contains=@racketNormal
-
+syn region racketStruc matchgroup=Delimiter start="{"rs=s+1 matchgroup=Delimiter end="}"re=e-1 contains=@racketNormal
+syn region racketStruc matchgroup=Delimiter start="#{"rs=s+2 matchgroup=Delimiter end="}"re=e-1 contains=@racketNormal
 syn region racketStruc matchgroup=Delimiter start="\["rs=s+1 matchgroup=Delimiter end="\]"re=e-1 contains=@racketNormal
 syn region racketStruc matchgroup=Delimiter start="#\["rs=s+2 matchgroup=Delimiter end="\]"re=e-1 contains=@racketNormal
 
