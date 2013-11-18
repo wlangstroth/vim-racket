@@ -26,7 +26,7 @@ endif
 " Forms in order of appearance at
 " http://docs.racket-lang.org/reference/index.html
 "
-syn keyword racketSyntax module require provide quote
+syn keyword racketSyntax module module+ require provide quote
 syn keyword racketSyntax #%datum #%expression #%top #%variable-reference #%app
 syn keyword racketSyntax lambda case-lambda let let* letrec
 syn keyword racketSyntax let-values let*-values let-syntax letrec-syntax
