@@ -355,6 +355,9 @@ syn keyword racketFunc class-field-accessor class-field-mutator
 "5.4.3 Generics
 syn keyword racketFunc generic send-generic make-generic
 
+" 9.1 Multiple Values
+syn keyword racketFunc values call-with-values
+
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
 syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
