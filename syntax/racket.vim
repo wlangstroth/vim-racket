@@ -509,8 +509,8 @@ syn region racketQuoted matchgroup=Delimiter start="#['`]"rs=s+2 end=![ \t()\[\]
 syn region racketQuoted matchgroup=Delimiter start="#['`]("rs=s+3 matchgroup=Delimiter end=")"re=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
 
 " Comments
-syn match racketComment /;.*$/
-syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
+syn match racketComment /;.*$/ contains=@Spell
+syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment,@Spell
 
 syn cluster racketNormal  add=racketQuoted,racketComment,racketMultilineComment
 syn cluster racketQuotedOrNormal  add=racketComment,racketMultilineComment
