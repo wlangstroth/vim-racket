@@ -26,7 +26,7 @@ endif
 " Forms in order of appearance at
 " http://docs.racket-lang.org/reference/index.html
 "
-syn keyword racketSyntax module module+ require provide quote
+syn keyword racketSyntax module module* module+ require provide quote
 syn keyword racketSyntax #%datum #%expression #%top #%variable-reference #%app
 syn keyword racketSyntax lambda case-lambda let let* letrec
 syn keyword racketSyntax let-values let*-values let-syntax letrec-syntax
@@ -355,6 +355,9 @@ syn keyword racketFunc class-field-accessor class-field-mutator
 "5.4.3 Generics
 syn keyword racketFunc generic send-generic make-generic
 
+" 9.1 Multiple Values
+syn keyword racketFunc values call-with-values
+
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
 syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
@@ -506,8 +509,8 @@ syn region racketQuoted matchgroup=Delimiter start="#['`]"rs=s+2 end=![ \t()\[\]
 syn region racketQuoted matchgroup=Delimiter start="#['`]("rs=s+3 matchgroup=Delimiter end=")"re=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
 
 " Comments
-syn match racketComment /;.*$/
-syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment
+syn match racketComment /;.*$/ contains=@Spell
+syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment,@Spell
 
 syn cluster racketNormal  add=racketQuoted,racketComment,racketMultilineComment
 syn cluster racketQuotedOrNormal  add=racketComment,racketMultilineComment
