@@ -404,6 +404,7 @@ syn region racketStruc matchgroup=Delimiter start="#\["rs=s+2 matchgroup=Delimit
 
 " Simple literals
 syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
+syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/
 
 syn cluster racketNormal  add=racketError,racketConstant,racketStruc,racketString
 syn cluster racketQuotedOrNormal  add=racketString
@@ -455,7 +456,7 @@ syn keyword racketBoolean  #t #f #true #false #T #F
 
 syn match racketError   "\<#\\\k*\>"
 
-syn match racketChar    "\<#\\.\>"
+syn match racketChar    "\<#\\.\w\@!"
 syn match racketChar    "\<#\\space\>"
 syn match racketChar    "\<#\\newline\>"
 syn match racketChar    "\<#\\return\>"
