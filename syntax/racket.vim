@@ -56,6 +56,12 @@ syn keyword racketSyntax define* define*-values define*-syntax define*-syntaxes 
 syn keyword racketSyntax package? package-exported-identifiers package-original-identifiers
 syn keyword racketSyntax block #%stratified-body
 
+" 9 Pattern Matching
+syn keyword racketSyntax match match* match/values define/match
+syn keyword racketSyntax match-lambda match-lambda* match-lambda**
+syn keyword racketSyntax match-let match-let* match-let-values match-let*-values
+syn keyword racketSyntax match-letrec match-define match-define-values
+
 " 12.5 Writing
 syn keyword racketSyntax write display displayln print
 syn keyword racketSyntax fprintf printf eprintf format
