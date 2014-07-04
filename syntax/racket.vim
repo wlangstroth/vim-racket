@@ -483,9 +483,9 @@ syn match racketExtSyntax "#:\k\+"
 syn cluster racketNormal  add=racketExtFunc,racketExtSyntax
 
 " syntax quoting, unquoting and quasiquotation
-syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=ALLBUT,@racketQuotedStuff,@racketQuotedOrNormal
-syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=ALLBUT,@racketQuotedStuff,@racketQuotedOrNormal
-syn region racketQuoted matchgroup=Delimiter start="['`]#(" matchgroup=Delimiter end=")" contains=ALLBUT,@racketQuotedStuff,@racketQuotedOrNormal
+syn region racketQuoted matchgroup=Delimiter start="['`]" end=![ \t()\[\]";]!me=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
+syn region racketQuoted matchgroup=Delimiter start="['`](" matchgroup=Delimiter end=")" contains=@racketQuotedStuff,@racketQuotedOrNormal
+syn region racketQuoted matchgroup=Delimiter start="['`]\?#(" matchgroup=Delimiter end=")" contains=@racketQuotedStuff,@racketQuotedOrNormal
 
 syn region racketUnquote matchgroup=Delimiter start="\<#,"rs=s+2 end=![ \t\[\]()";]!re=e-1,me=e-1 contained contains=@racketNormal
 syn region racketUnquote matchgroup=Delimiter start="\<#,@"rs=s+3 end=![ \t\[\]()";]!re=e-1,me=e-1 contained contains=@racketNormal
