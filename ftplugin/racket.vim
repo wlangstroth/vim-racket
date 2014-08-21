@@ -12,3 +12,7 @@ setl lispwords+=match,match*,match/values,define/match,match-lambda,match-lambda
 setl lispwords+=match-let,match-let*,match-let-values,match-let*-values
 setl lispwords+=match-letrec,match-define,match-define-values
 setl lisp
+
+" Enable auto begin new comment line when continuing from an old comment line
+set comments+=:;
+set fo+=r
