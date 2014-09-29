@@ -23,4 +23,4 @@ setl lisp
 setl comments+=:;
 setl formatoptions+=r
 
-setl makeprg="raco make -- %"
+setl makeprg=raco\ make\ --\ %
