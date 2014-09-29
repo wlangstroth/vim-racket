@@ -8,13 +8,17 @@ setl lispwords+=module,module*,module+,parameterize,let-values,let*-values,letre
 setl lispwords+=define-values,opt-lambda,case-lambda,syntax-rules,with-syntax,syntax-case
 setl lispwords+=define-signature,unit,unit/sig,compund-unit/sig,define-values/invoke-unit/sig
 
-" match
-setl lispwords+=match,match*
-
 " kanren
 setl lispwords+=fresh,run,run*,project,conde,condu
 
 " loops
 setl lispwords+=for,for/list,for/fold,for*,for*/list,for*/fold,for/or
 
+setl lispwords+=match,match*,match/values,define/match,match-lambda,match-lambda*,match-lambda**
+setl lispwords+=match-let,match-let*,match-let-values,match-let*-values
+setl lispwords+=match-letrec,match-define,match-define-values
 setl lisp
+
+" Enable auto begin new comment line when continuing from an old comment line
+setl comments+=:;
+setl formatoptions+=r
