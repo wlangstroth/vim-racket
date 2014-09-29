@@ -22,3 +22,5 @@ setl lisp
 " Enable auto begin new comment line when continuing from an old comment line
 setl comments+=:;
 setl formatoptions+=r
+
+setl makeprg="raco make -- %"
