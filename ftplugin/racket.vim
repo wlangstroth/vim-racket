@@ -47,3 +47,6 @@ function! s:Racket_visual_doc()
 endfunction
 
 vnoremap <buffer> K :call <SID>Racket_visual_doc()<cr>
+
+"setl commentstring=;;%s
+setl commentstring=#\|\ %s\ \|#
