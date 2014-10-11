@@ -47,3 +47,5 @@ function! s:Racket_visual_doc()
 endfunction
 
 vnoremap <buffer> K :call <SID>Racket_visual_doc()<cr>
+
+nnoremap <buffer> <f9> :!racket -t %<cr>
