@@ -53,7 +53,3 @@ nnoremap <buffer> <f9> :!racket -t %<cr>
 
 "setl commentstring=;;%s
 setl commentstring=#\|\ %s\ \|#
-
-if exists("g:NERDCustomDelimiters") && !has_key(g:NERDCustomDelimiters, 'racket')
-  let g:NERDCustomDelimiters.racket = { 'left': '#| ', 'right': ' |#', 'leftAlt': ';; ' }
-endif
