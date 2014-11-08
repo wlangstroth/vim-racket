@@ -12,7 +12,7 @@ setl lispwords+=define-signature,unit,unit/sig,compund-unit/sig,define-values/in
 setl lispwords+=fresh,run,run*,project,conde,condu
 
 " loops
-setl lispwords+=for,for/list,for/fold,for*,for*/list,for*/fold,for/or
+setl lispwords+=for,for/list,for/fold,for*,for*/list,for*/fold,for/or,for/and
 setl lispwords+=for/hash
 
 setl lispwords+=match,match*,match/values,define/match,match-lambda,match-lambda*,match-lambda**
