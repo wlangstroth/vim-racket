@@ -1,8 +1,7 @@
 " Vim syntax file
-" Language:     Racket 5.1
+" Language:     Racket
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket.git
-" Last Change:  2012-02-18
 " Description:  Contains all of the keywords in #lang racket
 
 " Initializing:
@@ -166,7 +165,7 @@ syn keyword racketFunc string-fill! string-append string->list list->string
 syn keyword racketFunc build-string string=? string<? string<=? string>? string>=?
 syn keyword racketFunc string-ci=? string-ci<? string-ci<=? string-ci>? string-ci>=?
 syn keyword racketFunc string-upcase string-downcase string-titlecase string-foldcase
-syn keyword racketFunc string-normalize-nfd string-normalize-nfc string-normalize-nfkc 
+syn keyword racketFunc string-normalize-nfd string-normalize-nfc string-normalize-nfkc
 syn keyword racketFunc string-locale=? string-locale>? string-locale<?
 syn keyword racketFunc string-locale-ci=? string-locale<=?
 syn keyword racketFunc string-locale-upcase string-locale-downcase

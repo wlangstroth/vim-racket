@@ -1,7 +1,6 @@
 " Language:     Racket
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket
-" Last Change:  2011-04-12
 
 setl iskeyword+=#,%,^
 setl lispwords+=module,module*,module+,parameterize,let-values,let*-values,letrec-values
