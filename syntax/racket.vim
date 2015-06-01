@@ -166,7 +166,7 @@ syn keyword racketFunc build-string string=? string<? string<=? string>? string>
 syn keyword racketFunc string-ci=? string-ci<? string-ci<=? string-ci>? string-ci>=?
 syn keyword racketFunc string-upcase string-downcase string-titlecase string-foldcase
 syn keyword racketFunc string-normalize-nfd string-normalize-nfc string-normalize-nfkc
-syn keyword racketFunc string-normalize-spaces
+syn keyword racketFunc string-normalize-spaces string-trim
 syn keyword racketFunc string-locale=? string-locale>? string-locale<?
 syn keyword racketFunc string-locale-ci=? string-locale<=?
 syn keyword racketFunc string-locale-upcase string-locale-downcase
