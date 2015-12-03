@@ -9,7 +9,7 @@ setl lispwords+=define-signature,unit,unit/sig,compund-unit/sig,define-values/in
 setl lispwords+=define-opt/c
 
 " Racket OOP
-setl listpwords+=class,define/public,define/private
+setl lispwords+=class,define/public,define/private
 
 " kanren
 setl lispwords+=fresh,run,run*,project,conde,condu
