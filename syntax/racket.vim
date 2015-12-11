@@ -61,6 +61,18 @@ syn keyword racketSyntax match-lambda match-lambda* match-lambda**
 syn keyword racketSyntax match-let match-let* match-let-values match-let*-values
 syn keyword racketSyntax match-letrec match-define match-define-values
 
+" 10.2.3 Handling Exceptions
+syn keyword racketSyntax with-handlers with-handlers*
+
+" 10.4 Continuations
+syn keyword racketSyntax let/cc let/ec
+
+" 10.4.1 Additional Control Operators
+syn keyword racketSyntax % prompt control prompt-at control-at reset shift
+syn keyword racketSyntax reset-at shift-at prompt0 reset0 control0 shift0
+syn keyword racketSyntax prompt0-at reset0-at control0-at shift0-at
+syn keyword racketSyntax set cupto
+
 " 12.5 Writing
 syn keyword racketSyntax write display displayln print
 syn keyword racketSyntax fprintf printf eprintf format
@@ -69,7 +81,6 @@ syn keyword racketSyntax print-graph print-struct print-box print-vector-length 
 syn keyword racketSyntax print-boolean-long-form print-reader-abbreviations print-as-expression print-syntax-width
 syn keyword racketSyntax current-write-relative-directory port-write-handler port-display-handler
 syn keyword racketSyntax port-print-handler global-port-print-handler
-
 
 " 13.7 Custodians
 syn keyword racketSyntax custodian? custodian-memory-accounting-available? custodian-box?
@@ -372,7 +383,6 @@ syn keyword racketFunc raise-syntax-error
 
 " 10.2.3 Handling Exceptions
 syn keyword racketFunc call-with-exception-handler uncaught-exception-handler
-syn keyword racketFunc with-handlers with-handlers*
 
 " 10.2.4 Configuring Default Handlers
 syn keyword racketFunc error-escape-handler error-display-handler error-print-width
@@ -392,6 +402,21 @@ syn keyword racketFunc exn:fail:network exn:fail:network:errno exn:fail:out-of-m
 syn keyword racketFunc exn:fail:unsupported exn:fail:user
 syn keyword racketFunc exn:break exn:break:hang-up exn:break:terminate
 
+" 10.3 Delayed Evaluation
+syn keyword racketFunc promise? delay lazy force promise-forced? promise-running?
+
+" 10.3.1 Additional Promise Kinds
+syn keyword racketFunc delay/name promise/name delay/strict delay/sync delay/thread delay/idle
+
+" 10.4 Continuations
+syn keyword racketFunc call-with-continuation-prompt abort-current-continuation make-continuation-prompt-tag
+syn keyword racketFunc default-continuation-prompt-tag call-with-current-continuation call/cc
+syn keyword racketFunc call-with-composable-continuation call-with-escape-continuation call/ec
+syn keyword racketFunc call-with-continuation-barrier continuation-prompt-available
+syn keyword racketFunc continuation? continuation-prompt-tag dynamic-wind
+
+" 10.4.1 Additional Control Operators
+syn keyword racketFunc call/prompt abort/cc call/comp abort fcontrol spawn splitter new-prompt
 
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
