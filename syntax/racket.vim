@@ -364,6 +364,35 @@ syn keyword racketFunc generic send-generic make-generic
 " 9.1 Multiple Values
 syn keyword racketFunc values call-with-values
 
+" 10.2.2 Raising Exceptions
+syn keyword racketFunc raise error raise-user-error raise-argument-error
+syn keyword racketFunc raise-result-error raise-argument-error raise-range-error
+syn keyword racketFunc raise-type-error raise-mismatch-error raise-arity-error
+syn keyword racketFunc raise-syntax-error
+
+" 10.2.3 Handling Exceptions
+syn keyword racketFunc call-with-exception-handler uncaught-exception-handler
+syn keyword racketFunc with-handlers with-handlers*
+
+" 10.2.4 Configuring Default Handlers
+syn keyword racketFunc error-escape-handler error-display-handler error-print-width
+syn keyword racketFunc error-print-context-length error-values->string-handler
+syn keyword racketFunc error-print-source-location
+
+" 10.2.5 Built-in Exception Types
+syn keyword racketFunc exn exn:fail exn:fail:contract exn:fail:contract:arity
+syn keyword racketFunc exn:fail:contract:divide-by-zero exn:fail:contract:non-fixnum-result
+syn keyword racketFunc exn:fail:contract:continuation exn:fail:contract:variable
+syn keyword racketFunc exn:fail:syntax exn:fail:syntax:unbound exn:fail:syntax:missing-module
+syn keyword racketFunc exn:fail:read exn:fail:read:eof exn:fail:read:non-char
+syn keyword racketFunc exn:fail:filesystem exn:fail:filesystem:exists
+syn keyword racketFunc exn:fail:filesystem:version exn:fail:filesystem:errno
+syn keyword racketFunc exn:fail:filesystem:missing-module
+syn keyword racketFunc exn:fail:network exn:fail:network:errno exn:fail:out-of-memory
+syn keyword racketFunc exn:fail:unsupported exn:fail:user
+syn keyword racketFunc exn:break exn:break:hang-up exn:break:terminate
+
+
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
 syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
