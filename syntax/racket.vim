@@ -475,8 +475,8 @@ syn cluster racketQuotedOrNormal  add=racketString
 " #x, #i, or #e, is an error
 syn match racketNumberError         "\<#[xdobie]\k*"
 
-syn match racketContainedNumberError   "\<#o\k*[^-+0-7delfinas#./@]"
-syn match racketContainedNumberError   "\<#b\k*[^-+01delfinas#./@]"
+syn match racketContainedNumberError   "\<#o\k*[^-+0-7delfinas#./@]\>"
+syn match racketContainedNumberError   "\<#b\k*[^-+01delfinas#./@]\>"
 syn match racketContainedNumberError   "\<#[ei]#[ei]"
 syn match racketContainedNumberError   "\<#[xdob]#[xdob]"
 
