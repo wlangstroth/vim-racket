@@ -3,7 +3,7 @@
 Installation
 ------------
 
-####[pathogen.vim](https://github.com/tpope/vim-pathogen)
+Module requires [pathogen.vim](https://github.com/tpope/vim-pathogen).
 
     cd ~/.vim/bundle
     git clone https://github.com/wlangstroth/vim-racket.git
