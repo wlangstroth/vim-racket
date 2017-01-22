@@ -155,8 +155,8 @@ syn keyword racketFunc flreal-part flimag-part
 " 3.2.3.2 Flonum Vectors
 syn keyword racketFunc flvector? flvector make-flvector flvector-length
 syn keyword racketFunc flvector-ref flvector-set! flvector-copy in-flvector
-syn keyword racketFunc for/flvector for*/flvector
 syn keyword racketFunc shared-flvector make-shared-flvector
+syn keyword racketSyntax for/flvector for*/flvector
 
 " 3.2.4 Fixnums
 syn keyword racketFunc fx+ fx- fx* fxquotient fxremainder fxmodulo fxabs
