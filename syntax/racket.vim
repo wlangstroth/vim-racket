@@ -102,7 +102,8 @@ syn keyword racketSyntax make-custodian-box custodian-box-value
 " lambda sign
 syn match racketSyntax /\<[\u03bb]\>/
 
-" Functions
+
+" Functions ==================================================================
 
 syn keyword racketFunc boolean? not equal? eqv? eq? equal?/recur immutable?
 syn keyword racketFunc true false symbol=? boolean=? false?
@@ -382,6 +383,19 @@ syn keyword racketFunc class-field-accessor class-field-mutator
 
 "5.4.3 Generics
 syn keyword racketFunc generic send-generic make-generic
+
+" 8.1 Data-strucure contracts
+syn keyword racketFunc flat-contract-with-explanation flat-named-contract
+" TODO where do any/c and none/c `value`s go?
+syn keyword racketFunc or/c first-or/c and/c not/c =/c </c >/c <=/c >=/c
+syn keyword racketFunc between/c real-in integer-in char-in natural-number/c
+syn keyword racketFunc string-len/c printable/c one-of/c symbols vectorof
+syn keyword racketFunc vector-immutableof vector/c box/c box-immutable/c listof
+syn keyword racketFunc non-empty-listof list*of cons/c cons/dc list/c *list/c
+syn keyword racketFunc syntax/c struct/c struct/dc parameter/c
+syn keyword racketFunc procedure-arity-includes/c hash/c hash/dc channel/c
+syn keyword racketFunc prompt-tag/c continuation-mark-key/c evt/c promise/c
+syn keyword racketFunc flat-contract flat-contract-predicate suggest/c
 
 " 9.1 Multiple Values
 syn keyword racketFunc values call-with-values
