@@ -55,6 +55,14 @@ syn keyword racketSyntax define* define*-values define*-syntax define*-syntaxes 
 syn keyword racketSyntax package? package-exported-identifiers package-original-identifiers
 syn keyword racketSyntax block #%stratified-body
 
+" 8 Contracts
+" 8.2 Function contracts
+syn keyword racketSyntax -> ->* ->i ->d case-> dynamic->* unconstrained-domain->
+
+" 8.6.1 Nested Contract Boundaries
+syn keyword racketSyntax with-contract define/contract define-struct/contract
+syn keyword racketSyntax invariant-assertion current-contract-region
+
 " 9 Pattern Matching
 syn keyword racketSyntax match match* match/values define/match
 syn keyword racketSyntax match-lambda match-lambda* match-lambda**
@@ -72,6 +80,9 @@ syn keyword racketSyntax % prompt control prompt-at control-at reset shift
 syn keyword racketSyntax reset-at shift-at prompt0 reset0 control0 shift0
 syn keyword racketSyntax prompt0-at reset0-at control0-at shift0-at
 syn keyword racketSyntax set cupto
+
+" 11.3.2 Parameters
+syn keyword racketSyntax parameterize parameterize*
 
 " 12.5 Writing
 syn keyword racketSyntax write display displayln print
@@ -106,8 +117,8 @@ syn keyword racketFunc inexact->exact exact->inexact
 
 " 3.2.2.1 Arithmetic
 syn keyword racketFunc + - * / quotient remainder quotient/remainder modulo
-syn keyword racketFunc add1 sub1 abs max min gcd lcm round floor ceiling
-syn keyword racketFunc truncate numerator denominator rationalize
+syn keyword racketFunc add1 sub1 abs max min gcd lcm round exact-round floor
+syn keyword racketFunc ceiling truncate numerator denominator rationalize
 
 " 3.2.2.2 Number Comparison
 syn keyword racketFunc = < <= > >=
@@ -418,6 +429,11 @@ syn keyword racketFunc continuation? continuation-prompt-tag dynamic-wind
 " 10.4.1 Additional Control Operators
 syn keyword racketFunc call/prompt abort/cc call/comp abort fcontrol spawn splitter new-prompt
 
+" 11.3.2 Parameters
+syn keyword racketFunc make-parameter make-derived-parameter parameter?
+syn keyword racketFunc parameter-procedure=? current-parameterization
+syn keyword racketFunc call-with-parameterization parameterization?
+
 " 14.1.1 Manipulating Paths
 syn keyword racketFunc path? path-string? path-for-some-system? string->path path->string path->bytes
 syn keyword racketFunc string->path-element bytes->path-element path-element->string path-element->bytes
@@ -432,6 +448,9 @@ syn keyword racketFunc path-replace-suffix path-add-suffix
 syn keyword racketFunc explode-path file-name-from-path filename-extension find-relative-path normalize-path
 syn keyword racketFunc path-element? path-only simple-form-path some-simple-path->string string->some-system-path
 
+" 15.6 Time
+syn keyword racketFunc current-seconds current-inexact-milliseconds
+syn keyword racketFunc seconds->date current-milliseconds
 
 
 syn match racketDelimiter !\<\.\>!
