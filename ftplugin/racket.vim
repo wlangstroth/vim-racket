@@ -57,3 +57,6 @@ nnoremap <buffer> <f9> :!racket -t %<cr>
 
 "setl commentstring=;;%s
 setl commentstring=#\|\ %s\ \|#
+
+command! RktRun  execute "!racket %"
+command! RktTest execute "!raco test %"
