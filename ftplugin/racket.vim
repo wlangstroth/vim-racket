@@ -60,3 +60,5 @@ setl commentstring=#\|\ %s\ \|#
 
 command! RktRun  execute "!racket %"
 command! RktTest execute "!raco test %"
+
+nnoremap <buffer> LB iλ
