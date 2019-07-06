@@ -10,6 +10,12 @@ This module works with many Vim plugin managers. To use with pathogen, type the 
 
 Re-open your file(s) and benefit from the features of _vim-racket_.
 
+## Available commands
+
+`RktTest` - Runs the tests in the current buffer
+
+`RktRun` - Runs the current buffer
+
 ## Thanks
 
 Most of the real work on this module was done by [Paul Cannon](https://github.com/thepaul) and [Asumu Takikawa](https://github.com/takikawa).
