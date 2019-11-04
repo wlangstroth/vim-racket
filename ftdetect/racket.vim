@@ -2,7 +2,7 @@
 let g:racket_hash_lang_regexp = '^#lang\s\+\([^][)(}{[:space:]]\+\)'
 
 " Tries to detect filetype from #lang line; defaults to ft=racket.
-function RacketDetectHashLang()
+function! RacketDetectHashLang()
   let old_ft = &filetype
 
   let matches = matchlist(getline(1), g:racket_hash_lang_regexp)
