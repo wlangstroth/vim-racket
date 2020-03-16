@@ -16,4 +16,4 @@ Most of the real work on this module was done by [Paul Cannon](https://github.co
 
 To see all the contributors,
 
-    git log | grep ^Author: | sed 's/ <.*//; s/^Author: //' | sort | uniq -c | sort -nr
+    git shortlog -sn
