@@ -60,3 +60,11 @@ vnoremap <buffer> K :call <SID>Racket_visual_doc()<cr>
 
 "setl commentstring=;;%s
 setl commentstring=#\|\ %s\ \|#
+
+" Undo our settings when the filetype changes away from Racket
+" (this should be amended if settings/mappings are added above!)
+let b:undo_ftplugin =
+      \  "setl iskeyword< lispwords< lisp< comments< formatoptions<"
+      \. "| setl makeprg< commentstring<"
+      \. "| nunmap <buffer> K"
+      \. "| vunmap <buffer> K"
