@@ -2,6 +2,11 @@
 " Maintainer:   Will Langstroth <will@langstroth.com>
 " URL:          http://github.com/wlangstroth/vim-racket
 
+if exists("b:did_ftplugin")
+  finish
+endif
+let b:did_ftplugin = 1
+
 setl iskeyword+=#,%,^
 setl lispwords+=module,module*,module+,parameterize,let-values,let*-values,letrec-values,local
 setl lispwords+=define-values,opt-lambda,case-lambda,syntax-rules,with-syntax,syntax-case,syntax-parse
@@ -61,3 +66,11 @@ endif
 
 "setl commentstring=;;%s
 setl commentstring=#\|\ %s\ \|#
+
+" Undo our settings when the filetype changes away from Racket
+" (this should be amended if settings/mappings are added above!)
+let b:undo_ftplugin =
+      \  "setl iskeyword< lispwords< lisp< comments< formatoptions<"
+      \. "| setl makeprg< commentstring<"
+      \. "| nunmap <buffer> K"
+      \. "| vunmap <buffer> K"
