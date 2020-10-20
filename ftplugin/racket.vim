@@ -7,7 +7,7 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-setl iskeyword+=#,%,^
+setl iskeyword+=#,%,^,-
 setl lispwords+=module,module*,module+,parameterize,let-values,let*-values,letrec-values,local
 setl lispwords+=define-values,opt-lambda,case-lambda,syntax-rules,with-syntax,syntax-case,syntax-parse
 setl lispwords+=define-signature,unit,unit/sig,compund-unit/sig,define-values/invoke-unit/sig
