@@ -3,6 +3,8 @@ let g:racket_hash_lang_dict = get(g:, 'racket_hash_lang_dict',
       \ {
       \   'racket/base': 'racket',
       \   'typed/racket': 'racket',
+      \   'br': 'racket',
+      \   'br/quicklang': 'racket',
       \   'scribble/base': 'scribble',
       \   'scribble/manual': 'scribble',
       \ })
