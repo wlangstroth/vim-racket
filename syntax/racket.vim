@@ -27,7 +27,7 @@ endif
 "
 syn keyword racketSyntax module module* module+ require provide quote
 syn keyword racketSyntax #%datum #%expression #%top #%variable-reference #%app
-syn keyword racketSyntax lambda case-lambda let let* letrec
+syn keyword racketSyntax case-lambda let let* letrec
 syn keyword racketSyntax let-values let*-values let-syntax letrec-syntax
 syn keyword racketSyntax let-syntaxes letrec-syntaxes letrec-syntaxes+values
 syn keyword racketSyntax local shared
@@ -101,6 +101,7 @@ syn keyword racketSyntax custodian-require-memory custodian-limit-memory
 syn keyword racketSyntax make-custodian-box custodian-box-value
 
 " lambda sign
+syn keyword racketLambda lambda conceal cchar=λ containedin=ALLBUT,racketComment,racketString,racketMultilineComment contained
 syn match racketSyntax /\<[\u03bb]\>/
 
 
@@ -472,7 +473,7 @@ syn match racketDelimiter !\<\.\>!
 
 syn match racketSymbol    ,\k+,  contained
 
-syn cluster racketNormal  contains=racketSyntax,racketFunc,racketDelimiter
+syn cluster racketNormal  contains=racketSyntax,racketFunc,racketDelimiter,racketLambda
 syn cluster racketQuotedStuff  contains=racketSymbol
 syn cluster racketQuotedOrNormal  contains=racketDelimiter
 
@@ -629,6 +630,8 @@ if version >= 508 || !exists("did_racket_syntax_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
+  HiLink racketLambda             Statement
+  HiLink Conceal                  Statement
   HiLink racketSyntax             Statement
   HiLink racketFunc               Function
 
