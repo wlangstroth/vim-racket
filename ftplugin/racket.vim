@@ -9,7 +9,8 @@ let b:did_ftplugin = 1
 
 setl iskeyword+=#,%,^
 setl lispwords+=module,module*,module+,parameterize,let-values,let*-values,letrec-values,local
-setl lispwords+=define-values,opt-lambda,case-lambda,syntax-rules,with-syntax,syntax-case,syntax-parse
+setl lispwords+=define-values,opt-lambda,case-lambda,syntax-rules,with-syntax,syntax-case
+setl lispwords+=syntax-parse,define/syntax-parse,define-syntax-class,define-splicing-syntax-class,define-simple-macro,define-syntax-parser,define-literal-set,define-conventions
 setl lispwords+=define-signature,unit,unit/sig,compund-unit/sig,define-values/invoke-unit/sig
 setl lispwords+=define-opt/c,define-syntax-rule
 setl lispwords+=struct
