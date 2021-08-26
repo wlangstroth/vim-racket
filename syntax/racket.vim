@@ -607,7 +607,7 @@ syn region racketQuoted matchgroup=Delimiter start="#['`]("rs=s+3 matchgroup=Del
 syn match racketComment /;.*$/ contains=racketTodo,racketNote,@Spell
 syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment,racketTodo,racketNote,@Spell
 
-syn keyword racketTodo FIXME TODO XXX contained
+syn match racketTodo /\C\<\(FIXME\|TODO\|XXX\)\ze:\?\>/ contained
 syntax match racketNote /\CNOTE\ze:\?/ contained
 
 syn cluster racketNormal  add=racketQuoted,racketComment,racketMultilineComment
