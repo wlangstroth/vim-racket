@@ -604,6 +604,7 @@ syn region racketQuoted matchgroup=Delimiter start="#['`]"rs=s+2 end=![ \t()\[\]
 syn region racketQuoted matchgroup=Delimiter start="#['`]("rs=s+3 matchgroup=Delimiter end=")"re=e-1 contains=@racketQuotedStuff,@racketQuotedOrNormal
 
 " Comments
+syn match racketSharpBang "\%^#![ /].*" display
 syn match racketComment /;.*$/ contains=racketTodo,racketNote,@Spell
 syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment,racketTodo,racketNote,@Spell
 
@@ -649,6 +650,7 @@ if version >= 508 || !exists("did_racket_syntax_inits")
 
   HiLink racketComment            Comment
   HiLink racketMultilineComment   Comment
+  HiLink racketSharpBang          Comment
   HiLink racketTodo               Todo
   HiLink racketNote               SpecialComment
   HiLink racketError              Error
