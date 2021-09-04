@@ -67,6 +67,10 @@ endif
 "setl commentstring=;;%s
 setl commentstring=#\|\ %s\ \|#
 
+if exists("loaded_matchit") && !exists("b:match_words")
+  let b:match_words = '#|:|#'
+endif
+
 " Undo our settings when the filetype changes away from Racket
 " (this should be amended if settings/mappings are added above!)
 let b:undo_ftplugin =
@@ -74,3 +78,4 @@ let b:undo_ftplugin =
       \. "| setl makeprg< commentstring<"
       \. "| nunmap <buffer> K"
       \. "| vunmap <buffer> K"
+      \. "| unlet! b:match_words"
