@@ -605,13 +605,21 @@ syn region racketQuoted matchgroup=Delimiter start="#['`]("rs=s+3 matchgroup=Del
 
 " Comments
 syn match racketComment /;.*$/ contains=racketTodo,racketNote,@Spell
-syn region racketMultilineComment start=/#|/ end=/|#/ contains=racketMultilineComment,racketTodo,racketNote,@Spell
+
+if exists("racket_no_comment_fold")
+  syn region racketBlockComment start=/#|/ end=/|#/ contains=racketBlockComment,racketTodo,racketNote,@Spell
+else
+  syn region racketBlockComment start=/#|/ end=/|#/ contains=racketBlockComment,racketTodo,racketNote,@Spell fold
+  syn region racketMultilineComment start="^\s*;" end="^\%(\s*;\)\@!" contains=racketComment transparent keepend fold
+endif
 
 syn keyword racketTodo FIXME TODO XXX contained
 syntax match racketNote /\CNOTE\ze:\?/ contained
 
-syn cluster racketNormal  add=racketQuoted,racketComment,racketMultilineComment
-syn cluster racketQuotedOrNormal  add=racketComment,racketMultilineComment
+syn cluster racketComments contains=racketComment,racketBlockComment,racketMultilineComment
+
+syn cluster racketNormal add=racketQuoted,@racketComments
+syn cluster racketQuotedOrNormal add=@racketComments
 
 
 " Synchronization and the wrapping up...
@@ -648,7 +656,7 @@ if version >= 508 || !exists("did_racket_syntax_inits")
   HiLink racketConstant           Constant
 
   HiLink racketComment            Comment
-  HiLink racketMultilineComment   Comment
+  HiLink racketBlockComment       Comment
   HiLink racketTodo               Todo
   HiLink racketNote               SpecialComment
   HiLink racketError              Error
