@@ -509,7 +509,13 @@ syn match racketUStringEscape "\\u\x\{4}\\u\x\{4}"       contained display
 
 syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/ contains=racketStringEscape,racketUStringEscape
 syn region racketString start=/#"/           skip=/\\[\\"]/ end=/"/ contains=racketStringEscape
-syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/
+
+if exists("racket_no_string_fold")
+  syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/
+else
+  syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/ fold
+endif
+
 
 syn cluster racketNormal  add=racketError,racketConstant,racketStruc,racketString
 syn cluster racketQuotedOrNormal  add=racketString
