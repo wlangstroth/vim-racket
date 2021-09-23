@@ -15,7 +15,7 @@ setl lispwords+=define-opt/c,define-syntax-rule
 setl lispwords+=struct
 
 " Racket OOP
-setl lispwords+=class,define/public,define/private
+setl lispwords+=class,define/public,define/private,define/override
 
 " kanren
 setl lispwords+=fresh,run,run*,project,conde,condu
