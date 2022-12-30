@@ -1,4 +1,4 @@
-let g:racket_hash_lang_regexp = '^#lang\s\+\([^][)(}{[:space:]]\+\)'
+let g:racket_hash_lang_regexp = '^#lang\s\+\%\(\<at-exp\>\s\+\)\?\([^][)(}{[:space:]]\+\)'
 let g:racket_hash_lang_dict = get(g:, 'racket_hash_lang_dict',
       \ {
       \   'racket/base': 'racket',
