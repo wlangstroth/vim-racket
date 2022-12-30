@@ -497,8 +497,27 @@ syn region racketStruc matchgroup=Delimiter start="\["rs=s+1 matchgroup=Delimite
 syn region racketStruc matchgroup=Delimiter start="#\["rs=s+2 matchgroup=Delimiter end="\]"re=e-1 contains=@racketNormal
 
 " Simple literals
-syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/
-syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/
+
+" Strings
+
+syn match racketStringEscapeError "\\." contained display
+
+syn match racketStringEscape "\\[abtnvfre'"\\]"        contained display
+syn match racketStringEscape "\\$"                     contained display
+syn match racketStringEscape "\\\o\{1,3}\|\\x\x\{1,2}" contained display
+
+syn match racketUStringEscape "\\u\x\{1,4}\|\\U\x\{1,8}" contained display
+syn match racketUStringEscape "\\u\x\{4}\\u\x\{4}"       contained display
+
+syn region racketString start=/\%(\\\)\@<!"/ skip=/\\[\\"]/ end=/"/ contains=racketStringEscapeError,racketStringEscape,racketUStringEscape
+syn region racketString start=/#"/           skip=/\\[\\"]/ end=/"/ contains=racketStringEscapeError,racketStringEscape
+
+if exists("racket_no_string_fold")
+  syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/
+else
+  syn region racketString start=/#<<\z(.*\)$/ end=/^\z1$/ fold
+endif
+
 
 syn cluster racketNormal  add=racketError,racketConstant,racketStruc,racketString
 syn cluster racketQuotedOrNormal  add=racketString
@@ -633,6 +652,9 @@ if version >= 508 || !exists("did_racket_syntax_inits")
   HiLink racketFunc               Function
 
   HiLink racketString             String
+  HiLink racketStringEscape       Special
+  HiLink racketUStringEscape      Special
+  HiLink racketStringEscapeError  Error
   HiLink racketChar               Character
   HiLink racketBoolean            Boolean
 
