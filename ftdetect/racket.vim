@@ -2,6 +2,7 @@ let g:racket_hash_lang_regexp = '^#lang\s\+\([^][)(}{[:space:]]\+\)'
 let g:racket_hash_lang_dict = get(g:, 'racket_hash_lang_dict',
       \ {
       \   'racket/base': 'racket',
+      \   'racket/gui': 'racket',
       \   'typed/racket': 'racket',
       \   'typed/racket/base': 'racket',
       \   'br': 'racket',
