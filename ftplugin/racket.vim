@@ -77,6 +77,6 @@ endif
 let b:undo_ftplugin =
       \  "setl iskeyword< lispwords< lisp< comments< formatoptions<"
       \. "| setl makeprg< commentstring<"
-      \. "| nunmap <buffer> K"
-      \. "| vunmap <buffer> K"
+      \. "| silent! nunmap <buffer> K"
+      \. "| silent! vunmap <buffer> K"
       \. "| unlet! b:browsefilter"
