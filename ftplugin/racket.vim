@@ -41,7 +41,8 @@ setl makeprg=raco\ make\ --\ %
 "    "press ENTER or type a command to continue"
 " We avoid the annoyance of having to hit enter by remapping K directly.
 nnoremap <buffer> <Plug>RacketDoc :silent !raco docs <cword><cr>:redraw!<cr>
-if maparg("K", "n") == ""
+let b:nmapped_K = maparg("K", "n") == ""
+if b:nmapped_K
   nmap <buffer> K <Plug>RacketDoc
 endif
 
@@ -60,7 +61,8 @@ function! s:Racket_visual_doc()
 endfunction
 
 vnoremap <buffer> <Plug>RacketDoc :call <SID>Racket_visual_doc()<cr>
-if maparg("K", "v") == ""
+let b:vmapped_K = maparg("K", "v") == ""
+if b:vmapped_K
   vmap <buffer> K <Plug>RacketDoc
 endif
 
@@ -77,6 +79,6 @@ endif
 let b:undo_ftplugin =
       \  "setl iskeyword< lispwords< lisp< comments< formatoptions<"
       \. "| setl makeprg< commentstring<"
-      \. "| nunmap <buffer> K"
-      \. "| vunmap <buffer> K"
+      \. (b:nmapped_K ? "| nunmap <buffer> K" : "")
+      \. (b:vmapped_K ? "| vunmap <buffer> K" : "")
       \. "| unlet! b:browsefilter"
