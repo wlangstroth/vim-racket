@@ -467,6 +467,8 @@ syn keyword racketFunc path-element? path-only simple-form-path some-simple-path
 syn keyword racketFunc current-seconds current-inexact-milliseconds
 syn keyword racketFunc seconds->date current-milliseconds
 
+" syntax/parse: https://docs.racket-lang.org/syntax/stxparse.html
+syn keyword racketSyntax syntax-parse syntax-parser define/syntax-parse define-syntax-class define-splicing-syntax-class define-simple-macro define-syntax-parser define-literal-set define-conventions
 
 syn match racketDelimiter !\<\.\>!
 
