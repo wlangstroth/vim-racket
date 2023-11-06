@@ -8,6 +8,7 @@ let g:racket_hash_lang_dict = get(g:, 'racket_hash_lang_dict',
       \   'br/quicklang': 'racket',
       \   'scribble/base': 'scribble',
       \   'scribble/manual': 'scribble',
+      \   'sicp': 'racket',
       \ })
 
 " Tries to detect filetype from #lang line; defaults to ft=racket.
